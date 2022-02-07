@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/07 19:21:57 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/07 20:13:04 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,14 +21,22 @@ int	check_file(char *arg)
 
 int	main(int argc, char **argv, char **envp)
 {
+	void	*mlx;
+	void	*mlx_win;
+
 	if (!envp[0])
 		exit(EXIT_FAILURE);
 	if (argc == 2 && !check_file(argv[1]))
 	{
-		put_image(data, info);
+		mlx = mlx_init();
+		mlx_win = mlx_new_window(mlx, 5 * 60, 5 * 60, "cub3d");
+//		save_image(data);
+//		mlx_hook(mlx_win, 2, 1L << 0, ft_close, data);
+//		mlx_hook(mlx_win, 17, 0L, ft_free_exit, data);
+		mlx_loop(mlx);
 	}
 	else
-		ft_putstr("Error\nargument\n");
+		printf("Error\nargument\n");
 	return (0);
 }
 
