@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/02/07 18:52:41 by lcavallu         ###   ########.fr        #
+#    Updated: 2022/02/08 19:32:38 by lcavallu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,11 @@ SRC_PATH    = src
 
 OBJ_PATH    = obj
 
-SOURCES =   parsing.c 
+SOURCES =   main.c \
+			parsing.c \
+			get_next_line.c \
+			get_next_line_utils.c \
+			utils.c
 
 PATH_MLX = mlx_linux
 
