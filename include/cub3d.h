@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 12:22:00 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/09 16:11:39 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,6 +25,11 @@
 # define ERROR 1
 # define SUCCESS 0
 
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
+
 # define BUFFER_SIZE				1
 # define MLX_SYNC_IMAGE_WRITABLE	1
 # define MLX_SYNC_WIN_FLUSH_CMD		2
@@ -37,19 +42,24 @@
 
 typedef struct s_pars
 {
-	int		file_fd;
-	char	*file_name;
-	char	**file;
-	char	**north;
-	char	**south;
-	char	**west;
-	char	**east;
-	char	**floor;
-	char	**ceiling;
+	int				file_fd;
+	char			*file_name;
+	char			**file;
+	char			**north;
+	char			**south;
+	char			**west;
+	char			**east;
+	char			**floor;
+	char			**ceiling;
+	struct s_data	*data;
 }	t_pars;
 
 typedef struct s_data
 {
+	void	*mlx;
+	void	*img[4];
+	int		*color_f[3];
+	int		*color_c[3];
 	t_pars	*pars;
 }	t_data;
 
@@ -76,23 +86,32 @@ void	parsing(t_data *d, char **argv);
 /*----------------parsing_init.c--------------*/
 
 void	init_data(t_data *data);
-void	init_pars(t_pars *pars, char **argv);
+void	init_pars(t_pars *pars, char **argv, t_data *d);
 
 /*----------------parsing_utils.c-----------------*/
 
 int		ft_strncmp_parsing(const char *s1, const char *s2);
 int		ft_error(char *str);
-int		ft_free_close_error(char *str, t_pars *pars);
+void	ft_free_close_error(char *str, t_pars *pars);
 int		ft_is_space(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
 int		cmp_str(const char *s1, const char *s2);
-
+void	free_str(char **str);
+int		ft_atoi(const char *nptr);
+int		ft_isdigit(int c);
 /*----------------ft_split.c-----------------*/
 
 char	**ft_split(const char *s, char c);
 
 /*----------------parsing_check.c-----------------*/
 
+void    check_array_texture(char **texture, t_pars *pars);
+void    verify_textures(t_pars *pars);
+int		check_array_color(char **color);
+void	check_path_textures(t_pars *pars, t_data *d);
+void    fill_colors(char **esp, t_pars *pars, t_data *d);
+void	check_colors(t_pars *pars, t_data *d, char **color);
+void	verify_textures(t_pars *pars);
 int		check_arg(int argc, char **argv, char **envp);
 void	check_informations(t_pars *pars);
 

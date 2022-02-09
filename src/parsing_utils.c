@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 12:21:19 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/09 16:11:18 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -46,7 +46,7 @@ int	ft_error(char *str)
 	exit(ERROR);
 }
 
-int	ft_free_close_error(char *str, t_pars *pars)
+void	ft_free_close_error(char *str, t_pars *pars)
 {
 	int	i;
 
@@ -54,16 +54,33 @@ int	ft_free_close_error(char *str, t_pars *pars)
 	if (pars->file_fd)
 		close(pars->file_fd);
 	if (pars->file)
+		free_str(pars->file);
+	if (pars->north)
+		free_str(pars->north);
+	if (pars->south)
+		free_str(pars->south);
+	if (pars->west)
+		free_str(pars->west);
+	if (pars->east)
+		free_str(pars->east);
+	if (pars->floor)
+		free_str(pars->floor);
+	if (pars->ceiling)
+		free_str(pars->ceiling);
+	ft_error(str);
+}
+
+void	free_str(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
 	{
-		while (pars->file[i])
-		{
-			free(pars->file[i]);
-			i++;
-		}
-		free(pars->file);
+		free(str[i]);
+		i++;
 	}
-	printf("%s\n", str);
-	exit(ERROR);
+	free(str);
 }
 
 int	ft_is_space(char *str)
@@ -104,4 +121,31 @@ int	cmp_str(const char *s1, const char *s2)
 {
 	return (!ft_strncmp(s1, s2, ft_strlen(s1))
 		&& !ft_strncmp(s1, s2, ft_strlen(s2)));
+}
+
+int	ft_atoi(const char *nptr)
+{
+	int			sign;
+	long long	nb;
+
+	nb = 0;
+	sign = 1;
+	while (*nptr == '\f' || *nptr == '\t' || *nptr == '\n' || *nptr == '\r'
+		|| *nptr == '\v' || *nptr == ' ')
+		nptr++;
+	while (*nptr >= '0' && *nptr <= '9')
+	{
+		nb = nb * 10 + *nptr - 48;
+		nptr++;
+	}
+	if (nb * sign > 2147483647)
+		return (-1);
+	return ((int)nb * sign);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }

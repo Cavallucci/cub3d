@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 12:14:40 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/09 14:12:20 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,7 +44,7 @@ void	collect_textures(t_pars *pars)
 
 	i = 0;
 	count = 1;
-	while (count < 6)
+	while (count < 7)
 	{
 		while (pars->file[i] && ft_is_space(pars->file[i]) == SUCCESS)
 			i++;
@@ -68,8 +68,8 @@ void	collect_textures(t_pars *pars)
 void	parsing(t_data *d, char **argv)
 {
 	t_pars	pars[1];
-(void)d;
-	init_pars(pars, argv);
+
+	init_pars(pars, argv, d);
 	check_informations(pars);
 	//si textures ok, verifir la map
 	//si map ok, mettre la map dans un ** a part

@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 12:29:44 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/09 16:15:23 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -23,16 +23,109 @@ int check_arg(int argc, char **argv, char **envp)
 	return (0);
 }
 
+void	check_array_texture(char **texture, t_pars *pars)
+{
+	int i;
+
+	i = 0;
+	while (texture[i])
+		i++;
+	if (i != 2)
+		ft_free_close_error("Error\nTextures configuration", pars);
+}
+
+int	check_array_color(char **color)
+{
+	int i;
+
+	i = 0;
+	while (color[i])
+	{
+		printf("color = %s\n", color[i]);
+		i++;
+	}
+	if (i != 1)
+		return (ERROR);
+	return (SUCCESS);
+}
+
+void	check_path_textures(t_pars *pars, t_data *d)
+{
+	int	img_width;
+	int	img_height;
+
+	d->img[NORTH] = mlx_xpm_file_to_image(d->mlx, pars->north[1], &img_width,
+						&img_height);
+	d->img[SOUTH] = mlx_xpm_file_to_image(d->mlx, pars->south[1], &img_width,
+						&img_height);
+	d->img[WEST] = mlx_xpm_file_to_image(d->mlx, pars->west[1], &img_width,
+						&img_height);
+	d->img[EAST] = mlx_xpm_file_to_image(d->mlx, pars->east[1], &img_width,
+						&img_height);
+	if (!d->img[NORTH] || !d->img[SOUTH] || !d->img[WEST] || !d->img[EAST])
+		ft_free_close_error("Error\nPath textures", pars);
+//destroy image ??
+}
+
+void	fill_colors(char **esp, t_pars *pars, t_data *d)
+{
+	(void)esp;
+	(void)pars;
+	(void)d;
+}
+
+int	check_charset(char *color)
+{
+	int	i;
+
+	i = 0;
+	while (color[i])
+	{
+		if (!ft_isdigit(color[i]) && color[i] != ' ' && color[i] != ',')
+			return (ERROR);
+		i++;
+	}
+	return (SUCCESS);
+}
+
+void	check_colors(t_pars *pars, t_data *d, char **color)
+{
+	char	**esp;
+//	char	**commas;
+
+	if (check_charset(color[1]) == ERROR)
+		ft_free_close_error("Error\nColors configuration", pars);
+	esp = ft_split(color[1], ' ');
+	if (check_array_color(esp) == ERROR)
+	{
+		free_str(esp);
+		//destroy image ?
+		ft_free_close_error("Error\nColors configuration", pars);
+	}
+	fill_colors(esp, pars, d);
+	//esp[0] == couleurs sans espaces
+	//split les espaces
+	//split les virgules
+	// couleurs = 3
+	//digit range de 0 a 255
+	//separer en 2 int **
+}
+
 void	verify_textures(t_pars *pars)
 {
-	check_array_texture(pars->north);
-	check_array_texture(pars->south);
-	check_array_texture(pars->west);
-	check_array_texture(pars->east);
-	check_array_texture(pars->floor);
-	check_array_texture(pars->ceiling);
-	if (cmp_str(pars->north[0], "NO") || cmp_str(pars->south[0], "SO")
-		|| cmp_str(pars->west, "WE");
+	check_array_texture(pars->north, pars);
+	check_array_texture(pars->south, pars);
+	check_array_texture(pars->west, pars);
+	check_array_texture(pars->east, pars);
+	check_array_texture(pars->floor, pars);
+	check_array_texture(pars->ceiling, pars);
+	if (!cmp_str(pars->north[0], "NO") || !cmp_str(pars->south[0], "SO")
+		|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA")
+		|| !cmp_str(pars->floor[0], "F") || !cmp_str(pars->ceiling[0], "C"))
+		ft_free_close_error("Error\nFile configuration", pars);
+//	check_path_textures(pars, pars->data);
+	check_colors(pars, pars->data, pars->floor);
+	check_colors(pars, pars->data, pars->ceiling);
 }
 
 void    check_informations(t_pars *pars)
