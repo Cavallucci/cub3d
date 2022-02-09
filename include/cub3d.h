@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/08 19:33:43 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/09 12:22:00 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -69,15 +69,31 @@ int		ft_strlen(const char *s);
 
 /*----------------parsing.c-----------------*/
 
-int		check_arg(int argc, char **argv, char **envp);
-void	init_data(t_data *data);
-void	init_pars(t_pars *pars, char **argv);
-void	check_informations(t_pars *pars);
+int		get_nb_line(t_pars  *pars);
+void	collect_textures(t_pars *pars);
 void	parsing(t_data *d, char **argv);
 
-/*----------------utils.c-----------------*/
+/*----------------parsing_init.c--------------*/
+
+void	init_data(t_data *data);
+void	init_pars(t_pars *pars, char **argv);
+
+/*----------------parsing_utils.c-----------------*/
 
 int		ft_strncmp_parsing(const char *s1, const char *s2);
 int		ft_error(char *str);
+int		ft_free_close_error(char *str, t_pars *pars);
+int		ft_is_space(char *str);
+int		ft_strncmp(const char *s1, const char *s2, int n);
+int		cmp_str(const char *s1, const char *s2);
+
+/*----------------ft_split.c-----------------*/
+
+char	**ft_split(const char *s, char c);
+
+/*----------------parsing_check.c-----------------*/
+
+int		check_arg(int argc, char **argv, char **envp);
+void	check_informations(t_pars *pars);
 
 #endif
