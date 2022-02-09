@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 16:15:23 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/09 18:24:38 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -41,11 +41,9 @@ int	check_array_color(char **color)
 	i = 0;
 	while (color[i])
 	{
-		printf("color = %s\n", color[i]);
-		i++;
+		if (color[i])
+			i++;
 	}
-	if (i != 1)
-		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -55,16 +53,16 @@ void	check_path_textures(t_pars *pars, t_data *d)
 	int	img_height;
 
 	d->img[NORTH] = mlx_xpm_file_to_image(d->mlx, pars->north[1], &img_width,
-						&img_height);
+			&img_height);
 	d->img[SOUTH] = mlx_xpm_file_to_image(d->mlx, pars->south[1], &img_width,
-						&img_height);
+			&img_height);
 	d->img[WEST] = mlx_xpm_file_to_image(d->mlx, pars->west[1], &img_width,
-						&img_height);
+			&img_height);
 	d->img[EAST] = mlx_xpm_file_to_image(d->mlx, pars->east[1], &img_width,
-						&img_height);
+			&img_height);
 	if (!d->img[NORTH] || !d->img[SOUTH] || !d->img[WEST] || !d->img[EAST])
 		ft_free_close_error("Error\nPath textures", pars);
-//destroy image ??
+	//destroy image ??
 }
 
 void	fill_colors(char **esp, t_pars *pars, t_data *d)
@@ -74,27 +72,72 @@ void	fill_colors(char **esp, t_pars *pars, t_data *d)
 	(void)d;
 }
 
+int	check_charset_commas(int j, char *color)
+{//segfault si ya pas de j + 1 ??
+	j += 1;
+	if (ft_isdigit(color[j]))
+		return (SUCCESS);
+	else
+	{
+		while (color[j] && color[j] == ' ')
+			j++;
+		if (color[j] == ',')
+			return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+int	check_charset_digit(int j, char *color)
+{//segfault si pas de j + 1 ??
+	j +=1;
+	while (color[j] && ft_isdigit(color[j]))
+		j++;
+	while (color[j] && color[j] == ' ')
+		j++;
+	if (color[j] == ',')
+		return (SUCCESS);
+	else if (ft_isdigit(color[j]))
+		return (ERROR);
+	return (SUCCESS);
+}
+
 int	check_charset(char *color)
 {
 	int	i;
+	int	nb_commas;
 
 	i = 0;
+	nb_commas = 0;
 	while (color[i])
 	{
+		printf("color = %s color[i] = %c\n", color, color[i]);
 		if (!ft_isdigit(color[i]) && color[i] != ' ' && color[i] != ',')
 			return (ERROR);
+		if (color[i] == ',')
+		{
+			if (check_charset_commas(i, color) == ERROR)
+				return (ERROR);
+			nb_commas++;
+		}
+		if (ft_isdigit(color[i]))
+			if (check_charset_digit(i, color) == ERROR)
+				return (ERROR);
 		i++;
 	}
+	if (nb_commas != 2)
+			return (ERROR);
+	if (color[0] == ',' || color[ft_strlen(color)] == ',')
+		return (ERROR);
 	return (SUCCESS);
 }
 
 void	check_colors(t_pars *pars, t_data *d, char **color)
 {
 	char	**esp;
-//	char	**commas;
+	//	char	**commas;
 
-	if (check_charset(color[1]) == ERROR)
-		ft_free_close_error("Error\nColors configuration", pars);
+	if (check_charset(color[1]) == ERROR) 
+		ft_free_close_error("Error\nColors configuration", pars); //destroy im?
 	esp = ft_split(color[1], ' ');
 	if (check_array_color(esp) == ERROR)
 	{
@@ -117,13 +160,11 @@ void	verify_textures(t_pars *pars)
 	check_array_texture(pars->south, pars);
 	check_array_texture(pars->west, pars);
 	check_array_texture(pars->east, pars);
-	check_array_texture(pars->floor, pars);
-	check_array_texture(pars->ceiling, pars);
 	if (!cmp_str(pars->north[0], "NO") || !cmp_str(pars->south[0], "SO")
-		|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA")
-		|| !cmp_str(pars->floor[0], "F") || !cmp_str(pars->ceiling[0], "C"))
+			|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA")
+			|| !cmp_str(pars->floor[0], "F") || !cmp_str(pars->ceiling[0], "C"))
 		ft_free_close_error("Error\nFile configuration", pars);
-//	check_path_textures(pars, pars->data);
+	//	check_path_textures(pars, pars->data);
 	check_colors(pars, pars->data, pars->floor);
 	check_colors(pars, pars->data, pars->ceiling);
 }

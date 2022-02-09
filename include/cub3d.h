@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 16:11:39 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/09 17:53:20 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -110,6 +110,9 @@ void    verify_textures(t_pars *pars);
 int		check_array_color(char **color);
 void	check_path_textures(t_pars *pars, t_data *d);
 void    fill_colors(char **esp, t_pars *pars, t_data *d);
+int		check_charset_commas(int j, char *color);
+int		check_charset_digit(int j, char *color);
+int		check_charset(char *color);
 void	check_colors(t_pars *pars, t_data *d, char **color);
 void	verify_textures(t_pars *pars);
 int		check_arg(int argc, char **argv, char **envp);
