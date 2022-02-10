@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 14:12:20 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:48:13 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -57,9 +57,11 @@ void	collect_textures(t_pars *pars)
 		else if (count == 4)
 			pars->east = ft_split(pars->file[i], ' ');
 		else if (count == 5)
-			pars->floor = ft_split(pars->file[i], ' ');
+			pars->floor = pars->file[i];
+//			pars->floor = ft_split(pars->file[i], ' ');
 		else if (count == 6)
-			pars->ceiling = ft_split(pars->file[i], ' ');
+			pars->ceiling = pars->file[i];
+//			pars->ceiling = ft_split(pars->file[i], ' ');
 		i++;
 		count++;
 	}

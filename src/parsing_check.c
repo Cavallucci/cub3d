@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 18:24:38 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:44:43 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,16 +34,40 @@ void	check_array_texture(char **texture, t_pars *pars)
 		ft_free_close_error("Error\nTextures configuration", pars);
 }
 
-int	check_array_color(char **color)
+int	check_array_color(char **color, char what, t_data *d)
 {
 	int i;
+	int	j;
+	int	count;
+	int	nb;
 
 	i = 0;
+	j = 0;
+	nb = 0;
+	count = 0;
 	while (color[i])
 	{
-		if (color[i])
+		j = 0;
+		if (color[i][j] == what)
 			i++;
+		while (color[i][j])
+		{
+			if (color[i][j] == ',')
+				j++;
+			j++;
+		}
+		nb = ft_atoi(color[i]);
+		printf("nb = %i\n", nb);
+		if (what == 'F')
+			d->color_f[count] = nb;
+		if (what == 'C')
+			d->color_c[count] = nb;
+		count++;
+		i++;
 	}
+	i = -1;
+	while (d->color_c[i++])
+		printf("plafond = %i\n", d->color_c[i]);
 	return (SUCCESS);
 }
 
@@ -73,7 +97,7 @@ void	fill_colors(char **esp, t_pars *pars, t_data *d)
 }
 
 int	check_charset_commas(int j, char *color)
-{//segfault si ya pas de j + 1 ??
+{
 	j += 1;
 	if (ft_isdigit(color[j]))
 		return (SUCCESS);
@@ -88,7 +112,7 @@ int	check_charset_commas(int j, char *color)
 }
 
 int	check_charset_digit(int j, char *color)
-{//segfault si pas de j + 1 ??
+{
 	j +=1;
 	while (color[j] && ft_isdigit(color[j]))
 		j++;
@@ -101,16 +125,20 @@ int	check_charset_digit(int j, char *color)
 	return (SUCCESS);
 }
 
-int	check_charset(char *color)
+int	check_charset(char *color, char what)
 {
 	int	i;
 	int	nb_commas;
 
 	i = 0;
 	nb_commas = 0;
+	while (color[i] == ' ')
+		i++;
+	if (color[i] != what)
+		return (ERROR);
+	i += 1;
 	while (color[i])
 	{
-		printf("color = %s color[i] = %c\n", color, color[i]);
 		if (!ft_isdigit(color[i]) && color[i] != ' ' && color[i] != ',')
 			return (ERROR);
 		if (color[i] == ',')
@@ -131,21 +159,21 @@ int	check_charset(char *color)
 	return (SUCCESS);
 }
 
-void	check_colors(t_pars *pars, t_data *d, char **color)
+void	check_colors(t_pars *pars, t_data *d, char *color, char what)
 {
 	char	**esp;
-	//	char	**commas;
 
-	if (check_charset(color[1]) == ERROR) 
+	if (check_charset(color, what) == ERROR) 
 		ft_free_close_error("Error\nColors configuration", pars); //destroy im?
-	esp = ft_split(color[1], ' ');
-	if (check_array_color(esp) == ERROR)
+	esp = ft_split(color, ' ');
+	if (check_array_color(esp, what, d) == ERROR)
 	{
 		free_str(esp);
 		//destroy image ?
 		ft_free_close_error("Error\nColors configuration", pars);
 	}
-	fill_colors(esp, pars, d);
+//	fill_colors(esp, pars, d);
+	free_str(esp);
 	//esp[0] == couleurs sans espaces
 	//split les espaces
 	//split les virgules
@@ -161,12 +189,11 @@ void	verify_textures(t_pars *pars)
 	check_array_texture(pars->west, pars);
 	check_array_texture(pars->east, pars);
 	if (!cmp_str(pars->north[0], "NO") || !cmp_str(pars->south[0], "SO")
-			|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA")
-			|| !cmp_str(pars->floor[0], "F") || !cmp_str(pars->ceiling[0], "C"))
+			|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA"))
 		ft_free_close_error("Error\nFile configuration", pars);
 	//	check_path_textures(pars, pars->data);
-	check_colors(pars, pars->data, pars->floor);
-	check_colors(pars, pars->data, pars->ceiling);
+	check_colors(pars, pars->data, pars->floor, 'F');
+	check_colors(pars, pars->data, pars->ceiling, 'C');
 }
 
 void    check_informations(t_pars *pars)

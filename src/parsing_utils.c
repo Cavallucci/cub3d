@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 16:11:18 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/10 14:54:37 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -63,10 +63,10 @@ void	ft_free_close_error(char *str, t_pars *pars)
 		free_str(pars->west);
 	if (pars->east)
 		free_str(pars->east);
-	if (pars->floor)
-		free_str(pars->floor);
-	if (pars->ceiling)
-		free_str(pars->ceiling);
+//	if (pars->floor)
+//		free(pars->floor);
+//	if (pars->ceiling)
+//		free(pars->ceiling);
 	ft_error(str);
 }
 

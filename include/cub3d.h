@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 17:53:20 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:29:45 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -49,8 +49,8 @@ typedef struct s_pars
 	char			**south;
 	char			**west;
 	char			**east;
-	char			**floor;
-	char			**ceiling;
+	char			*floor;
+	char			*ceiling;
 	struct s_data	*data;
 }	t_pars;
 
@@ -58,8 +58,8 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*img[4];
-	int		*color_f[3];
-	int		*color_c[3];
+	int		color_f[3];
+	int		color_c[3];
 	t_pars	*pars;
 }	t_data;
 
@@ -107,13 +107,11 @@ char	**ft_split(const char *s, char c);
 
 void    check_array_texture(char **texture, t_pars *pars);
 void    verify_textures(t_pars *pars);
-int		check_array_color(char **color);
+int		check_array_color(char **color, char what, t_data *d);
 void	check_path_textures(t_pars *pars, t_data *d);
 void    fill_colors(char **esp, t_pars *pars, t_data *d);
-int		check_charset_commas(int j, char *color);
-int		check_charset_digit(int j, char *color);
-int		check_charset(char *color);
-void	check_colors(t_pars *pars, t_data *d, char **color);
+int		check_charset(char *color, char what);
+void	check_colors(t_pars *pars, t_data *d, char *color, char what);
 void	verify_textures(t_pars *pars);
 int		check_arg(int argc, char **argv, char **envp);
 void	check_informations(t_pars *pars);
