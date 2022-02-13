@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/02/09 12:13:31 by lcavallu         ###   ########.fr        #
+#    Updated: 2022/02/13 15:27:37 by lcavallu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,15 @@ OBJ_PATH    = obj
 
 SOURCES =   main.c \
 			parsing.c \
-			get_next_line.c \
-			get_next_line_utils.c \
-			parsing_utils.c \
-			parsing_check.c \
+			ft_split.c \
 			parsing_init.c \
-			ft_split.c
+			get_next_line.c \
+			parsing_utils.c \
+			ft_split_parsing.c \
+			parsing_check_map.c \
+			get_next_line_utils.c \
+			parsing_check_colors.c \
+			parsing_check_textures.c 
 
 PATH_MLX = mlx_linux
 

@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/10 15:29:45 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/13 16:47:13 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -44,6 +44,7 @@ typedef struct s_pars
 {
 	int				file_fd;
 	char			*file_name;
+	int				nb_line_of_file;
 	char			**file;
 	char			**north;
 	char			**south;
@@ -60,6 +61,7 @@ typedef struct s_data
 	void	*img[4];
 	int		color_f[3];
 	int		color_c[3];
+	char	**map;
 	t_pars	*pars;
 }	t_data;
 
@@ -79,9 +81,11 @@ int		ft_strlen(const char *s);
 
 /*----------------parsing.c-----------------*/
 
+int		check_arg(int arg, char **argv, char **envp);
 int		get_nb_line(t_pars  *pars);
-void	collect_textures(t_pars *pars);
+void	check_map(t_pars *pars);
 void	parsing(t_data *d, char **argv);
+void	check_informations(t_pars *pars);
 
 /*----------------parsing_init.c--------------*/
 
@@ -99,21 +103,33 @@ int		cmp_str(const char *s1, const char *s2);
 void	free_str(char **str);
 int		ft_atoi(const char *nptr);
 int		ft_isdigit(int c);
+
 /*----------------ft_split.c-----------------*/
 
 char	**ft_split(const char *s, char c);
 
-/*----------------parsing_check.c-----------------*/
+/*----------------ft_split_parsing.c-----------------*/
 
-void    check_array_texture(char **texture, t_pars *pars);
-void    verify_textures(t_pars *pars);
-int		check_array_color(char **color, char what, t_data *d);
-void	check_path_textures(t_pars *pars, t_data *d);
-void    fill_colors(char **esp, t_pars *pars, t_data *d);
+char	**ft_split_parsing(const char *s);
+
+
+/*----------------parsing_check_colors.c---------------*/
+
+int		check_charset_commas(int j, char *color);
+int		check_charset_digit(int j, char *color);
 int		check_charset(char *color, char what);
 void	check_colors(t_pars *pars, t_data *d, char *color, char what);
-void	verify_textures(t_pars *pars);
-int		check_arg(int argc, char **argv, char **envp);
-void	check_informations(t_pars *pars);
+
+/*----------------parsing_check_textures.c-----------------*/
+
+void	collect_textures(t_pars *pars);
+void    check_array_texture(char **texture, t_pars *pars);
+void	check_path_textures(t_pars *pars, t_data *d);
+void    verify_textures(t_pars *pars);
+
+/*----------------parsing_check_map.c-----------------*/
+
+int		check_first_last_line(t_pars *pars, char **map);
+int		verify_map(t_pars *pars);
 
 #endif

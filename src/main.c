@@ -6,11 +6,22 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/08 18:39:37 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:02:28 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "cub3d.h"
+
+int check_arg(int argc, char **argv, char **envp)
+{
+    if (!envp[0])
+        ft_error("Error\nNo env");
+    if (argc != 2)
+        ft_error("Error\nargument");
+    if (ft_strncmp_parsing(argv[1], ".cub") != SUCCESS)
+        ft_error("Error\nFile extension");
+    return (0);
+}
 
 int main(int argc, char **argv, char **envp)
 {
@@ -23,10 +34,3 @@ int main(int argc, char **argv, char **envp)
 	}
     return (0);
 }
-
-//check nombre d'arguments --> FAIT
-//check si l'arg1(la map) est un ".cub" --> FAIT
-//check si il s'ouvre bien --> FAIT
-//check la config du fichier .cub (6 infos, espaces OK)
-//check la map
-//si map ok, ca donne quoi sur une minimap ?

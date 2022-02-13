@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/10 14:48:13 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/13 19:37:48 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -37,33 +37,51 @@ int	get_nb_line(t_pars	*pars)
 	return (count_line);
 }
 
-void	collect_textures(t_pars *pars)
+void    check_informations(t_pars *pars)
+{
+    int i;
+
+    i = 0;
+    pars->nb_line_of_file = get_nb_line(pars); //pour pouvoir malloc pars->file
+    pars->file = malloc(sizeof(char *) * pars->nb_line_of_file);
+    while (i < pars->nb_line_of_file)
+    {
+        pars->file[i] = get_next_line(pars->file_fd, &pars->file[i]);
+        i++;
+    }
+    close(pars->file_fd);
+    if (i < 9)
+        ft_free_close_error("Error\nFile configuration", pars);
+    collect_textures(pars);
+    verify_textures(pars);
+}
+
+void	check_map(t_pars *pars)
 {
 	int	i;
-	int	count;
+	int	j;
 
 	i = 0;
-	count = 1;
-	while (count < 7)
-	{
-		while (pars->file[i] && ft_is_space(pars->file[i]) == SUCCESS)
-			i++;
-		if (count == 1)
-			pars->north = ft_split(pars->file[i], ' ');
-		else if (count == 2)
-			pars->south = ft_split(pars->file[i], ' ');
-		else if (count == 3)
-			pars->west = ft_split(pars->file[i], ' ');
-		else if (count == 4)
-			pars->east = ft_split(pars->file[i], ' ');
-		else if (count == 5)
-			pars->floor = pars->file[i];
-//			pars->floor = ft_split(pars->file[i], ' ');
-		else if (count == 6)
-			pars->ceiling = pars->file[i];
-//			pars->ceiling = ft_split(pars->file[i], ' ');
+	j = 0;
+	while (!cmp_str(pars->file[i], pars->ceiling))
 		i++;
-		count++;
+	i++;
+	while (i < pars->nb_line_of_file && (ft_is_space(pars->file[i]) == SUCCESS
+		|| pars->file[i][0] == 0))
+		i++;
+	pars->nb_line_of_file  -= i;
+	pars->data->map = malloc(sizeof(char *) * pars->nb_line_of_file); 
+	while (pars->file[i])
+	{
+		pars->data->map[j] = pars->file[i];
+		i++;
+		j++;
+	}
+	pars->data->map[j] = NULL;
+	if (verify_map(pars) == ERROR)
+	{
+		free(pars->data->map);
+		ft_free_close_error("Error\nMap configuration", pars);
 	}
 }
 
@@ -73,6 +91,8 @@ void	parsing(t_data *d, char **argv)
 
 	init_pars(pars, argv, d);
 	check_informations(pars);
+	check_map(pars);
+	printf("parsing ok\n");
 	//si textures ok, verifir la map
 	//si map ok, mettre la map dans un ** a part
 

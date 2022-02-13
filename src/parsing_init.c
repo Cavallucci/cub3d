@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/09 14:36:59 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/13 14:50:36 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -20,7 +20,8 @@ void    init_data(t_data *d)
 
 void    init_pars(t_pars *pars, char **argv, t_data *d)
 {
-    pars->file_name = argv[1];
+    pars->nb_line_of_file = 0;
+	pars->file_name = argv[1];
     pars->file_fd = open(pars->file_name, O_RDONLY);
     if (pars->file_fd < 0)
         ft_error("Error\nOpen map");
