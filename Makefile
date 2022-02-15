@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/02/13 15:27:37 by lcavallu         ###   ########.fr        #
+#    Updated: 2022/02/15 16:00:50 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,9 @@ SOURCES =   main.c \
 			parsing_check_map.c \
 			get_next_line_utils.c \
 			parsing_check_colors.c \
-			parsing_check_textures.c 
+			parsing_check_textures.c \
+			execute.c \
+			vector.c
 
 PATH_MLX = mlx_linux
 
