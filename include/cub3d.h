@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/15 14:12:48 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:18:18 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -40,6 +40,12 @@
 # define S							115
 # define D							100
 
+typedef struct s_vec
+{
+	double	x;
+	double	y;
+}	t_vec;
+
 typedef struct s_pars
 {
 	int				file_fd;
@@ -63,6 +69,9 @@ typedef struct s_data
 	int		color_f[3];
 	int		color_c[3];
 	char	**map;
+	t_vec	pos;
+	t_vec	dir;
+	t_vec	plane;
 	t_pars	*pars;
 }	t_data;
 
@@ -132,5 +141,13 @@ void    verify_textures(t_pars *pars);
 
 int		check_first_last_line(t_pars *pars, char **map);
 int		verify_map(t_pars *pars);
+
+/*----------------execute.c--------------------*/
+
+void	execute(t_data *data);
+
+/*----------------vector.c---------------------*/
+
+t_vec	init_vec(double x, double y);
 
 #endif
