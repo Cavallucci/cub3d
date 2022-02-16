@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/13 19:37:28 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:49:06 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -100,13 +100,15 @@ int	around_map(char **map, int i, int j)
 		i--;
 	if (i - 1 > 0)
 		i--;
-	if (map[i][j] == '0')
+	if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
+		|| map[i][j] == 'E' || map[i][j] == 'W')
 		error_high++;
 	while (map[tmp + 1] && map[tmp + 1][j] == ' ')
 		tmp++;
 	if (map[tmp + 1])
 		tmp++;
-	if (map[tmp] && map[tmp][j] == '0')
+	if (map[tmp] && (map[tmp][j] == '0' || map[tmp][j] == 'N'
+		|| map[tmp][j] == 'S' || map[tmp][j] == 'E' || map[tmp][j] == 'W'))
 		error_back++;
 	if (error_high > 0 || error_back > 0)
 		return (ERROR);
@@ -126,13 +128,15 @@ int	sides_map(char **map, int i, int j)
 		j--;
 	if (j - 1 > 0)
 		j--;
-	if (map[i][j] == '0')
+	if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
+		|| map[i][j] == 'E' || map[i][j] == 'W')
 		error_high++;
 	while (map[i][tmp + 1] && map[i][tmp + 1] == ' ')
 		tmp++;
 	if (map[i][tmp + 1])
 		tmp++;
-	if (map[i][tmp] && map[i][tmp] == '0')
+	if (map[i][tmp] && (map[i][tmp] == '0' || map[i][tmp] == 'N'
+		|| map[i][tmp] == 'S' || map[i][tmp] == 'E' || map[i][tmp] == 'W'))
 		error_back++;
 	if (error_high > 0 || error_back > 0)
 		return (ERROR);
@@ -164,11 +168,11 @@ int	check_spaces_map(char **map)
 int	verify_map(t_pars *pars)
 {
 	if (check_first_last_line(pars, pars->data->map) == ERROR)
-		return (ERROR);
+			return (ERROR);
 	if (check_char_map(pars->data->map) == ERROR)
 		return (ERROR);
-	if (check_first_last_char(pars->data->map) == ERROR)
-		return (ERROR);
+//	if (check_first_last_char(pars->data->map) == ERROR)
+//		return (ERROR);
 	if (check_spaces_map(pars->data->map) == ERROR)
 		return (ERROR);
 	return (SUCCESS);

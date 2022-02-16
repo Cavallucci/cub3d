@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/13 16:47:13 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:12:48 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -45,6 +45,7 @@ typedef struct s_pars
 	int				file_fd;
 	char			*file_name;
 	int				nb_line_of_file;
+	int				nb_bigger_line;
 	char			**file;
 	char			**north;
 	char			**south;
