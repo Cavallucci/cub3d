@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute.c                                          :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 15:37:27 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/15 16:00:07 by pguignie         ###   ########.fr       */
+/*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
+/*   Updated: 2022/02/16 18:00:27 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,16 @@ void	test(t_data *data)
 	data->map = map;
 }
 
-void	execute(t_data *data)
+void	mlx_handling(t_data *data)
+{
+	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
+		data->mlx->img, 0, 0);
+	mlx_key_hook(data->mlx->win, key_hook, data);
+	mlx_hook(data->mlx->win, 17, 0, win_close, data);
+	mlx_loop(data->mlx->mlx_ptr);
+}
+
+void	render(t_data *data)
 {
 	int	i;
 	int	j;
@@ -53,7 +62,10 @@ void	execute(t_data *data)
 		write(1, "\n", 1);
 		i++;
 	}
-	data->pos = init_vec(5, 5);
+	data->pos = init_vec(4.5, 4.5);
 	data->dir = init_vec(0, 1);
 	data->plane = init_vec(0.66, 0);
+	data->mlx = init_mlx(data);
+	draw(data);
+	mlx_handling(data);
 }

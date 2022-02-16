@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/15 15:37:21 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:23:11 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -31,7 +31,7 @@ int main(int argc, char **argv, char **envp)
 	{
 		init_data(data);
 		parsing(data, argv);
-		execute(data);
+		render(data);
 	}
     return (0);
 }

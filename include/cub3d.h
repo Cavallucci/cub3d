@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/15 16:00:42 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/16 18:05:59 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <string.h>
 # include <stdio.h>
+# include <math.h>
 
 # define ERROR 1
 # define SUCCESS 0
@@ -61,9 +62,21 @@ typedef struct s_pars
 	struct s_data	*data;
 }	t_pars;
 
+typedef struct s_mlx
+{
+	void	*mlx_ptr;
+	void	*win;
+	void	*img;
+	char	*buffer;
+	int		pixel_bits;
+	int		line_bytes;
+	int		endian;
+	t_vec	screen;
+}	t_mlx;
+
 typedef struct s_data
 {
-	void	*mlx;
+	t_mlx	*mlx;
 	void	*img[4];
 	int		color_f[3];
 	int		color_c[3];
@@ -141,12 +154,29 @@ void    verify_textures(t_pars *pars);
 int		check_first_last_line(t_pars *pars, char **map);
 int		verify_map(t_pars *pars);
 
-/*----------------execute.c--------------------*/
+/*----------------render.c--------------------*/
 
-void	execute(t_data *data);
+void	render(t_data *data);
 
 /*----------------vector.c---------------------*/
 
 t_vec	init_vec(double x, double y);
+t_vec	add_vec(t_vec a, t_vec b);
+t_vec	sub_vec(t_vec a, t_vec b);
+t_vec	mult_dbl(t_vec v, double dbl);
+double	size_vec(t_vec v);
+
+/*----------------init_mlx.c-----------------------*/
+
+t_mlx	*init_mlx(t_data *data);
+
+/*----------------key_hook.c-----------------------*/
+
+int		win_close(t_data *data);
+int		key_hook(int keycode, t_data *data);
+
+/*----------------draw.c----------------------*/
+
+void	draw(t_data *data);
 
 #endif
