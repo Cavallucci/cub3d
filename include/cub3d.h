@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/16 14:18:18 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:24:13 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -29,6 +29,8 @@
 # define SOUTH 1
 # define WEST 2
 # define EAST 3
+# define FLOOR 0
+# define CEILING 1
 
 # define BUFFER_SIZE				1
 # define MLX_SYNC_IMAGE_WRITABLE	1
@@ -66,8 +68,8 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*img[4];
-	int		color_f[3];
-	int		color_c[3];
+	int		color_f;
+	int		color_c;
 	char	**map;
 	t_vec	pos;
 	t_vec	dir;

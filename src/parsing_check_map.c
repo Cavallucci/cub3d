@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/15 15:49:06 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:44:31 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -35,7 +35,19 @@ int	check_first_last_line(t_pars *pars, char **map)
 	return (SUCCESS);
 }
 
-int	check_char_map(char **map)
+void	init_position(int i, int j, t_data *d, char **map)
+{
+	if (map[i][j] == 'N')
+		d->dir = init_vec(0, 1);
+	if (map[i][j] == 'W')
+		d->dir = init_vec(1, 0);
+	if (map[i][j] == 'S')
+		d->dir = init_vec(0, -1);
+	if (map[i][j] == 'E')
+		d->dir = init_vec(-1, 0);
+}
+
+int	check_char_map(char **map, t_data *d, t_pars *pars)
 {
 	int	i;
 	int	j;
@@ -54,7 +66,12 @@ int	check_char_map(char **map)
 				return (ERROR);
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
+			{
+				init_position(i, j, d, map);
+				d->pos.y = (pars->nb_line_of_file - i) + 0.5;
+				d->pos.x = j + 0.5;
 				player++;
+			}
 			j++;
 		}
 		i++;
@@ -169,10 +186,8 @@ int	verify_map(t_pars *pars)
 {
 	if (check_first_last_line(pars, pars->data->map) == ERROR)
 			return (ERROR);
-	if (check_char_map(pars->data->map) == ERROR)
+	if (check_char_map(pars->data->map, pars->data, pars) == ERROR)
 		return (ERROR);
-//	if (check_first_last_char(pars->data->map) == ERROR)
-//		return (ERROR);
 	if (check_spaces_map(pars->data->map) == ERROR)
 		return (ERROR);
 	return (SUCCESS);

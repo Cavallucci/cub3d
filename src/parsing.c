@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/15 14:56:54 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:27:07 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,7 +42,7 @@ void    check_informations(t_pars *pars)
     int i;
 
     i = 0;
-    pars->nb_line_of_file = get_nb_line(pars); //pour pouvoir malloc pars->file
+    pars->nb_line_of_file = get_nb_line(pars);
     pars->file = malloc(sizeof(char *) * pars->nb_line_of_file);
     while (i < pars->nb_line_of_file)
     {
