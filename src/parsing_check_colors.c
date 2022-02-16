@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/13 13:39:21 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/16 14:35:36 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -80,9 +80,11 @@ void    check_colors(t_pars *pars, t_data *d, char *color, char what)
 	int     i;
 	char    **esp;
 	int     nb;
+	int		multi;
 
 	i = 0;
 	nb = 0;
+	multi = 16;
 	if (check_charset(color, what) == ERROR)
 		ft_free_close_error("Error\nColors configuration", pars); //destroy im?
 	esp = ft_split_parsing(color);
@@ -90,16 +92,16 @@ void    check_colors(t_pars *pars, t_data *d, char *color, char what)
 	{
 		nb = ft_atoi(esp[i]);
 		if (what == 'F' && (nb >= 0 && nb <= 255))
-			d->color_f[i] = nb;
+			d->color_f += nb << multi;
 		else if (what == 'C' && (nb >= 0 && nb <= 255))
-			d->color_c[i] = nb;
+			d->color_c += nb << multi;
 		else
 		{
 			free_str(esp);
 			ft_free_close_error("Error\nColors configuration", pars); //destroy im?
 		}
 		i++;
+		multi -= 8;
 	}
 	free_str(esp);
 }
-
