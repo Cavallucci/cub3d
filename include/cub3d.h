@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/17 16:25:58 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:40:14 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -87,6 +87,8 @@ typedef struct s_data
 	t_vec	pos;
 	t_vec	dir;
 	t_vec	plane;
+	int		width;
+	int		height;
 	t_pars	*pars;
 }	t_data;
 
@@ -180,7 +182,7 @@ int		key_hook(int keycode, t_data *data);
 
 /*----------------draw.c----------------------*/
 
-void	draw(t_data **data);
+void	draw(t_data *data);
 
 /*----------------minimap.c----------------------*/
 

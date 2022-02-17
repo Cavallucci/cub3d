@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:36:49 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/17 15:34:46 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 17:00:50 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,12 @@ static int	get_color(t_data *data, t_vec min, t_vec max, t_vec pix)
 
 	v_min = add_vec(data->pos, sub_vec(data->dir, data->plane));
 	v_max = add_vec(data->pos, add_vec(data->dir, data->plane));
-	
 	pos.x = ((pix.x - min.x) / (max.x - min.x) * 10 - 5 + data->pos.x);
 	pos.y = ((pix.y - min.y) / (max.y - min.y) * 10 - 5 + data->pos.y);
-	//printf("pos[%d][%d] = %c\n", (int)pos.y, (int)pos.x, data->map[(int)pos.y][(int)pos.x]);
-	//printf("bigger_line: %d\n", data->pars->nb_bigger_line);
-	if (pos.x < 0 || pos.x > data->pars->nb_bigger_line || pos.y < 0 || pos.y > data->pars->nb_line_of_file)
+	if (pos.x < 0 || pos.x >= data->width || data->height - pos.y - 1 < 0 || data->height - pos.y - 1 >= data->height)
 		color = 0xFFFFFF;
-	else if (data->map[(int)pos.y][(int)pos.x] == '1')
-	{
-		printf("Get_color\n");
+	else if (data->map[data->height - (int)pos.y - 1][(int)pos.x] == '1')
 		color = 0;
-	}
 	else
 		color = 0xFFFFFF;
 	if (!isLeft(data->pos, pos, v_max) && isLeft(data->pos, pos, v_min))
@@ -71,10 +65,6 @@ static int	get_color(t_data *data, t_vec min, t_vec max, t_vec pix)
 	}
 	if (dot(sub_vec(pos, data->pos), sub_vec(pos, data->pos)) < 0.05)
 		color = 0xFF0000;
-	/*
-	if (pos.x > 4.5 && pos.x < 5.5 && (int)pos.y == 7)
-		color = 0xFFFF00;
-		*/
 	return (color);
 }
 
@@ -85,12 +75,10 @@ void	minimap(t_data *data)
 	t_vec	pix;
 	int		color;
 
-	printf("minimap bigger_line: %d\n", data->pars->nb_bigger_line);
 	min = mult_dbl(data->mlx->screen, 0.05);
 	max = mult_dbl(data->mlx->screen, 0.25);
 	pix = min;
 	pix.y = floor(pix.y);
-	printf("pos: (%lf, %lf)\n", data->pos.x, data->pos.y);
 	while (pix.y < max.y)
 	{
 		pix.x = floor(min.x);

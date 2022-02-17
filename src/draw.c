@@ -6,12 +6,13 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/17 16:25:52 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 17:01:07 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	t_mlx	*mlx;
@@ -78,10 +79,11 @@ int	check_hit(t_vec *map, t_vec *side, t_vec delta, t_vec dir)
 	}
 	return (wall);
 }
+*/
 
-void	draw(t_data **datas)
+void	draw(t_data *data)
 {
-	printf("draw bigger_line: %d\n", (*datas)->pars->nb_bigger_line);
+	/*
 	t_vec	v;
 	t_vec	delta;
 	t_vec	side;
@@ -92,9 +94,9 @@ void	draw(t_data **datas)
 	double	dist;
 	int		x;
 	int		y;
-	t_data	*data = *datas;
+	*/
 
-	printf("draw bigger_line: %d\n", data->pars->nb_bigger_line);
+	/*
 	v = add_vec(data->pos, sub_vec(data->dir, data->plane));
 	step = size_vec(data->plane) * 2 / data->mlx->screen.x;
 	x = 0;
@@ -138,5 +140,6 @@ void	draw(t_data **datas)
 		v = add_vec(v, mult_dbl(data->plane, step));
 		x++;
 	}
+	*/
 	minimap(data);
 }
