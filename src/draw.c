@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/16 18:09:48 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:25:52 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,9 @@ int	check_hit(t_vec *map, t_vec *side, t_vec delta, t_vec dir)
 	return (wall);
 }
 
-void	draw(t_data *data)
+void	draw(t_data **datas)
 {
+	printf("draw bigger_line: %d\n", (*datas)->pars->nb_bigger_line);
 	t_vec	v;
 	t_vec	delta;
 	t_vec	side;
@@ -91,12 +92,12 @@ void	draw(t_data *data)
 	double	dist;
 	int		x;
 	int		y;
+	t_data	*data = *datas;
 
-	printf("pos: (%lf, %lf), dir: (%lf, %lf), plane: (%lf, %lf)\n", data->pos.x, data->pos.y, data->dir.x, data->dir.y, data->plane.x, data->plane.y);
+	printf("draw bigger_line: %d\n", data->pars->nb_bigger_line);
 	v = add_vec(data->pos, sub_vec(data->dir, data->plane));
 	step = size_vec(data->plane) * 2 / data->mlx->screen.x;
 	x = 0;
-	printf("v: (%lf, %lf)\n", v.x, v.y);
 	while (x < (int)data->mlx->screen.x)
 	{
 		map.x = fabs(data->pos.x);
@@ -137,5 +138,5 @@ void	draw(t_data *data)
 		v = add_vec(v, mult_dbl(data->plane, step));
 		x++;
 	}
-	printf("v: (%lf, %lf)\n", v.x, v.y);
+	minimap(data);
 }

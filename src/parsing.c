@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/16 15:27:07 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:30:29 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,7 +25,6 @@ int	get_nb_line(t_pars	*pars)
 	line = get_next_line(file, &line);
 	if (!line)
 		ft_free_close_error("Error\nEmpty file", pars);
-	count_line++;
 	while (line)
 	{
 		free(line);
@@ -109,7 +108,7 @@ void	check_map(t_pars *pars)
 		|| pars->file[i][0] == 0))
 		i++;
 	pars->nb_line_of_file  -= i;
-	pars->data->map = malloc(sizeof(char *) * pars->nb_line_of_file); 
+	pars->data->map = malloc(sizeof(char *) * (pars->nb_line_of_file + 1)); 
 	while (pars->file[i])
 	{
 		pars->data->map[j] = pars->file[i];
@@ -135,7 +134,6 @@ void	parsing(t_data *d, char **argv)
 	init_pars(pars, argv, d);
 	check_informations(pars);
 	check_map(pars);
-	printf("parsing ok\n");
 	//si textures ok, verifir la map
 	//si map ok, mettre la map dans un ** a part
 

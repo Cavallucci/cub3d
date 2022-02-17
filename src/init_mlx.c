@@ -6,12 +6,13 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:14:22 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/16 14:25:20 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:42:34 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+/*
 static void	*ft_memset(void *b, int c, size_t len)
 {
 	size_t			i;
@@ -44,13 +45,13 @@ static void	*ft_calloc(size_t count, size_t size)
 	}
 	return (ptr);
 }
+*/
 
-t_mlx	*init_mlx(t_data *data)
+t_mlx	*init_mlx()
 {
 	t_mlx	*ptr;
 
-	(void)data;
-	ptr = ft_calloc(1, sizeof(t_mlx));
+	ptr = malloc(sizeof(t_mlx));
 	if (!ptr)
 		return (NULL);
 	ptr->mlx_ptr = mlx_init();

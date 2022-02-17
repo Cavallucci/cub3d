@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/16 18:07:27 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:27:08 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	re_draw(t_data *data)
 			data->mlx->screen.y);
 	data->mlx->buffer = mlx_get_data_addr(data->mlx->img,
 			&data->mlx->pixel_bits, &data->mlx->line_bytes, &data->mlx->endian);
-	draw(data);
+	draw(&data);
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
 		data->mlx->img, 0, 0);
 }

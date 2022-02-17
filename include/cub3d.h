@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/16 18:25:05 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:25:58 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -171,7 +171,7 @@ double	size_vec(t_vec v);
 
 /*----------------init_mlx.c-----------------------*/
 
-t_mlx	*init_mlx(t_data *data);
+t_mlx	*init_mlx(void);
 
 /*----------------key_hook.c-----------------------*/
 
@@ -180,6 +180,10 @@ int		key_hook(int keycode, t_data *data);
 
 /*----------------draw.c----------------------*/
 
-void	draw(t_data *data);
+void	draw(t_data **data);
+
+/*----------------minimap.c----------------------*/
+
+void	minimap(t_data *data);
 
 #endif

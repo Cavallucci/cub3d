@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/16 15:44:31 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:29:46 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -68,7 +68,7 @@ int	check_char_map(char **map, t_data *d, t_pars *pars)
 				|| map[i][j] == 'W')
 			{
 				init_position(i, j, d, map);
-				d->pos.y = (pars->nb_line_of_file - i) + 0.5;
+				d->pos.y = (pars->nb_line_of_file - i - 1) + 0.5;
 				d->pos.x = j + 0.5;
 				player++;
 			}

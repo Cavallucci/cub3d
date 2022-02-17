@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/16 14:23:11 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/17 15:39:29 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,10 +25,13 @@ int check_arg(int argc, char **argv, char **envp)
 
 int main(int argc, char **argv, char **envp)
 {
-    t_data  data[1];
+    t_data  *data;
 
     if (check_arg(argc, argv, envp) == SUCCESS)
 	{
+		data = (t_data *)malloc(sizeof(t_data));
+		if (!data)
+			return (0);
 		init_data(data);
 		parsing(data, argv);
 		render(data);

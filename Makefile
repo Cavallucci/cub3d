@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/02/16 14:38:15 by pguignie         ###   ########.fr        #
+#    Updated: 2022/02/17 13:44:18 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SOURCES =   main.c \
 			parsing_check_textures.c \
 			render.c \
 			draw.c \
+			minimap.c \
 			init_mlx.c \
 			key_hook.c \
 			vector.c
