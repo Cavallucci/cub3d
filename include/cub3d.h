@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/17 16:40:14 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/18 14:47:20 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -75,12 +75,17 @@ typedef struct s_mlx
 	int		line_bytes;
 	int		endian;
 	t_vec	screen;
+	int		img_width;
+	int		img_height;
 }	t_mlx;
 
 typedef struct s_data
 {
 	t_mlx	*mlx;
-	void	*img[4];
+	t_mlx	*north;
+	t_mlx	*south;
+	t_mlx	*west;
+	t_mlx	*east;
 	int		color_f;
 	int		color_c;
 	char	**map;

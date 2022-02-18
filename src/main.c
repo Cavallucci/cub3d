@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/17 15:39:29 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/18 14:45:55 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -33,6 +33,7 @@ int main(int argc, char **argv, char **envp)
 		if (!data)
 			return (0);
 		init_data(data);
+		data->mlx = init_mlx();
 		parsing(data, argv);
 		render(data);
 	}
