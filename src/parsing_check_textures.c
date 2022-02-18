@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/13 13:59:30 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/18 14:11:52 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -78,7 +78,7 @@ void	verify_textures(t_pars *pars)
 	if (!cmp_str(pars->north[0], "NO") || !cmp_str(pars->south[0], "SO")
 			|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA"))
 		ft_free_close_error("Error\nFile configuration", pars);
-	//	check_path_textures(pars, pars->data);
+	check_path_textures(pars, pars->data);
 	check_colors(pars, pars->data, pars->floor, 'F');
 	check_colors(pars, pars->data, pars->ceiling, 'C');
 }
