@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/17 18:23:25 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/18 17:39:51 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,16 @@ int	key_hook(int keycode, t_data *data)
 		data->plane.y = tmp.y * cos(angle) - tmp.x * sin(angle);
 		re_draw(data);
 	}
-	if (keycode == W)
+	if (keycode == W && data->map[(int)(((data->height - 1) - data->pos.y + 0.55) * data->dir.y)][(int)(data->pos.x + 0.55 * data->dir.x)] != '1')
+	{
+		printf("map y = %i, x = %i\n", (int)(((data->height - 1) - data->pos.y + 0.55) * data->dir.y), (int)(data->pos.x + 0.55 * data->dir.x));
 		data->pos = add_vec(data->pos, mult_dbl(data->dir, 0.5));
-	if (keycode == S)
+	}
+	if (keycode == S && data->map[(int)(((data->height - 1) - data->pos.y - 0.55) * data->dir.y)][(int)(data->pos.x - 0.55 * data->dir.x)] != '1')
 		data->pos = add_vec(data->pos, mult_dbl(data->dir, -0.5));
-	if (keycode == A)
+	if (keycode == A && data->map[(int)(((data->height - 1) - data->pos.y - 0.75) * data->dir.y)][(int)((data->pos.x - 0.75) * data->dir.x)] != '1')
 		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.75));
-	if (keycode == D)
+	if (keycode == D && data->map[(int)(((data->height - 1) - data->pos.y + 0.75) * data->dir.y)][(int)((data->pos.x + 0.75) * data->dir.x)] != '1')
 		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.75));
 	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
 		re_draw(data);
