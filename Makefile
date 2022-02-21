@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/02/17 13:44:18 by pguignie         ###   ########.fr        #
+#    Updated: 2022/02/21 15:13:18 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SOURCES =   main.c \
 			minimap.c \
 			init_mlx.c \
 			key_hook.c \
+			hit.c \
 			vector.c
 
 PATH_MLX = mlx_linux

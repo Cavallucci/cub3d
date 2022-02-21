@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/18 14:47:20 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/21 15:26:25 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -192,5 +192,12 @@ void	draw(t_data *data);
 /*----------------minimap.c----------------------*/
 
 void	minimap(t_data *data);
+
+/*----------------hit.c----------------------*/
+
+int	hit_up(t_data *data);
+int	hit_down(t_data *data);
+int	hit_left(t_data *data);
+int	hit_right(t_data *data);
 
 #endif
