@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/21 17:59:57 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/21 18:44:51 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,14 @@ void	draw(t_data *data)
 				dist = side.y - delta.y;
 			else
 				dist = side.x - delta.x;
+					printf("cc\n");
 			if (data->map[data->height - (int)map.y - 1][(int)map.x] == '1')
 				hit = 1;
+					printf("cc1\n");
 			y = 0;
 			int down = ((int)data->mlx->screen.y / 2) - ((int)data->mlx->screen.y / 2) / dist;
 			int	top = ((int)data->mlx->screen.y / 2) + ((int)data->mlx->screen.y / 2) / dist;
+			int	color;
 			while (y < (int)data->mlx->screen.y)
 			{
 				if (y < down) 
@@ -132,7 +135,6 @@ void	draw(t_data *data)
 					my_mlx_pixel_put(data, x, y, 0xFFFFFF);
 				else if (wall && v.y > 0)
 				{
-					int	color;
 					color = get_color((data->pos.x + v.x * dist) - floor(data->pos.x + v.x * dist), (double)(y - down) / (double)(top - down), data->north, data);
 					my_mlx_pixel_put(data, x, y, color);
 				}
@@ -140,8 +142,7 @@ void	draw(t_data *data)
 					my_mlx_pixel_put(data, x, y, 0x0000FF);
 				else if (!wall && v.x < 0)
 				{
-					int	color;
-					color = get_color((data->pos.y + v.y * dist) - floor(data->pos.y + v.y * dist), (double)(y - down) / (double)(top - down), data->north, data);
+					color = get_color((data->pos.y + v.y * dist) - floor(data->pos.y + v.y * dist), (double)(y - down) / (double)(top - down), data->east, data);
 					my_mlx_pixel_put(data, x, y, color);
 				}
 				else if (!wall && v.x > 0)
