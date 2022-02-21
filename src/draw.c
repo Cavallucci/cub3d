@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/21 15:28:53 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/21 17:59:57 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,24 +79,12 @@ static t_vec	get_side(t_vec pos, t_vec dir, t_vec delta)
 	return (side);
 }
 
-/*
-static t_vec	normalize(t_vec v)
-{
-	double	d;
-
-	if (v.x == 0 && v.y == 0)
-		return (v);
-	d = sqrt(v.x * v.x + v.y * v.y);
-	return (mult_dbl(v, 1 / d));
-}
-*/
-
 int	get_color(double x, double y, t_mlx *side, t_data *data)
 {
 	(void)data;
 	x = x * side->img_width;
-	y = y * side->img_height;
-	return (((int *)side->mlx_ptr)[(int)(x + y * (side->line_bytes / 4))]);
+	y = (1 - y) * side->img_height;
+	return (((int *)side->mlx_ptr)[(int)((int)x + (int)y * (side->line_bytes / 4))]);
 }
 
 void	draw(t_data *data)
@@ -134,25 +122,28 @@ void	draw(t_data *data)
 			if (data->map[data->height - (int)map.y - 1][(int)map.x] == '1')
 				hit = 1;
 			y = 0;
-			int top = ((int)data->mlx->screen.y / 2) - ((int)data->mlx->screen.y / 2) / dist;
-			int	down = ((int)data->mlx->screen.y / 2) + ((int)data->mlx->screen.y / 2) / dist;
+			int down = ((int)data->mlx->screen.y / 2) - ((int)data->mlx->screen.y / 2) / dist;
+			int	top = ((int)data->mlx->screen.y / 2) + ((int)data->mlx->screen.y / 2) / dist;
 			while (y < (int)data->mlx->screen.y)
 			{
-				if (y < top) 
+				if (y < down) 
 					my_mlx_pixel_put(data, x, y, 0);
-				else if (y > down) 
+				else if (y > top) 
 					my_mlx_pixel_put(data, x, y, 0xFFFFFF);
 				else if (wall && v.y > 0)
 				{
 					int	color;
-					//color = get_color((data->pos.x + normalize(v).x * dist) - floor(data->pos.x + normalize(v).x * dist), (double)(y - down) / (double)(top - down), data->north, data);
-					color = 0x00FF00;
+					color = get_color((data->pos.x + v.x * dist) - floor(data->pos.x + v.x * dist), (double)(y - down) / (double)(top - down), data->north, data);
 					my_mlx_pixel_put(data, x, y, color);
 				}
 				else if (wall && v.y < 0)
 					my_mlx_pixel_put(data, x, y, 0x0000FF);
 				else if (!wall && v.x < 0)
-					my_mlx_pixel_put(data, x, y, 0xFF0000);
+				{
+					int	color;
+					color = get_color((data->pos.y + v.y * dist) - floor(data->pos.y + v.y * dist), (double)(y - down) / (double)(top - down), data->north, data);
+					my_mlx_pixel_put(data, x, y, color);
+				}
 				else if (!wall && v.x > 0)
 					my_mlx_pixel_put(data, x, y, 0xFF00FF);
 				y++;
