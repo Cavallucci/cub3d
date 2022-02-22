@@ -1,7 +1,7 @@
-NO ./img/hitler.xpm
-SO ./img/brick.xpm
-WE ./img/baniere.xpm
-EA ./img/eagle.xpm
+NO ./img/NO.xpm
+SO ./img/SO.xpm
+WE ./img/WE.xpm
+EA ./img/EA.xpm
 
 F220   ,     100  ,    0  
 

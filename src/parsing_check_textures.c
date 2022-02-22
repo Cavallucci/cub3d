@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/18 14:26:25 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:04:04 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -51,27 +51,27 @@ void	check_array_texture(char **texture, t_pars *pars)
 		ft_free_close_error("Error\nTextures configuration", pars);
 }
 
-/*
+
 void	check_path_textures(t_pars *pars, t_data *d)
-{
-	int	img_width;
-	int	img_height;
+{	
+	d->north = malloc(sizeof(t_mlx));
+	d->south = malloc(sizeof(t_mlx));
+	d->west = malloc(sizeof(t_mlx));
+	d->east = malloc(sizeof(t_mlx));
+	d->north->img = mlx_xpm_file_to_image(d->mlx->mlx_ptr, pars->north[1], &(d->north->img_width), &(d->north->img_height));
+	d->south->img = mlx_xpm_file_to_image(d->mlx->mlx_ptr, pars->south[1], &d->south->img_width, &d->south->img_height);
+	d->west->img = mlx_xpm_file_to_image(d->mlx->mlx_ptr, pars->west[1], &d->west->img_width, &d->west->img_height);
+	d->east->img = mlx_xpm_file_to_image(d->mlx->mlx_ptr, pars->east[1], &d->east->img_width, &d->east->img_height);
+	d->north->mlx_ptr = mlx_get_data_addr(d->north->img, &d->north->pixel_bits, &d->north->line_bytes, &d->north->endian);	
+	d->south->mlx_ptr = mlx_get_data_addr(d->south->img, &d->south->pixel_bits, &d->south->line_bytes, &d->south->endian);	
+	d->west->mlx_ptr = mlx_get_data_addr(d->west->img, &d->west->pixel_bits, &d->west->line_bytes, &d->west->endian);	
+	d->east->mlx_ptr = mlx_get_data_addr(d->east->img, &d->east->pixel_bits, &d->east->line_bytes, &d->east->endian);	
 
-	d->img[NORTH] = mlx_xpm_file_to_image(d->mlx, pars->north[1], &img_width,
-			&img_height);
-	d->img[SOUTH] = mlx_xpm_file_to_image(d->mlx, pars->south[1], &img_width,
-			&img_height);
-	d->img[WEST] = mlx_xpm_file_to_image(d->mlx, pars->west[1], &img_width,
-			&img_height);
-	d->img[EAST] = mlx_xpm_file_to_image(d->mlx, pars->east[1], &img_width,
-			&img_height);
-	if (!d->img[NORTH] || !d->img[SOUTH] || !d->img[WEST] || !d->img[EAST])
+	if (!d->north->img || !d->south->img || !d->west->img || !d->east->img)
 		ft_free_close_error("Error\nPath textures", pars);
-	//destroy image ??
 }
-*/
 
-void	verify_textures(t_pars *pars)
+void	verify_textures(t_pars *pars, t_data *d)
 {
 	check_array_texture(pars->north, pars);
 	check_array_texture(pars->south, pars);
@@ -80,7 +80,8 @@ void	verify_textures(t_pars *pars)
 	if (!cmp_str(pars->north[0], "NO") || !cmp_str(pars->south[0], "SO")
 			|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA"))
 		ft_free_close_error("Error\nFile configuration", pars);
-	//check_path_textures(pars, pars->data);
+	d->mlx = init_mlx();
+	check_path_textures(pars, d);
 	check_colors(pars, pars->data, pars->floor, 'F');
 	check_colors(pars, pars->data, pars->ceiling, 'C');
 }
