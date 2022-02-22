@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/17 16:43:33 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:36:33 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -42,12 +42,13 @@ void    check_informations(t_pars *pars)
 
     i = 0;
     pars->nb_line_of_file = get_nb_line(pars);
-    pars->file = malloc(sizeof(char *) * pars->nb_line_of_file);
+    pars->file = malloc(sizeof(char *) * (pars->nb_line_of_file + 1));
     while (i < pars->nb_line_of_file)
     {
         pars->file[i] = get_next_line(pars->file_fd, &pars->file[i]);
         i++;
     }
+	pars->file[i] = NULL;
     close(pars->file_fd);
     if (i < 9)
         ft_free_close_error("Error\nFile configuration", pars);

@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:36:49 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/21 14:34:35 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/22 15:58:03 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int	get_color(t_data *data, t_vec min, t_vec max, t_vec pix)
 	v_max = add_vec(data->pos, add_vec(data->dir, data->plane));
 	pos.x = ((pix.x - min.x) / (max.x - min.x) * 10 - 5 + data->pos.x);
 	pos.y = ((pix.y - min.y) / (max.y - min.y) * 10 - 5 + data->pos.y);
-	if (pos.x < 0 || pos.x >= data->width || data->height - pos.y - 1 < 0 || data->height - pos.y - 1 >= data->height)
+	if (pos.x < 0 || pos.x >= data->width || data->height - 1 - (int)pos.y < 0 || data->height - pos.y >= data->height)
 		color = 0xFFFFFF;
 	else if (data->map[data->height - (int)pos.y - 1][(int)pos.x] == '1')
 		color = 0;
