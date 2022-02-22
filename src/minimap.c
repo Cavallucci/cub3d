@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:36:49 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/22 17:50:18 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/22 18:34:36 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,33 @@ static int	get_color(t_data *data, t_vec min, t_vec max, t_vec pix)
 	t_vec	pos;
 	int 	color;
 
+	color = (int)(data->mlx->buffer[(int)((data->mlx->screen.y - pix.y - 1) * data->mlx->line_bytes + pix.x * 4)] & 0xFFFFFF);
 	v_min = add_vec(data->pos, sub_vec(data->dir, data->plane));
 	v_max = add_vec(data->pos, add_vec(data->dir, data->plane));
 	pos.x = ((pix.x - min.x) / (max.x - min.x) * 10 - 5 + data->pos.x);
 	pos.y = ((pix.y - min.y) / (max.y - min.y) * 10 - 5 + data->pos.y);
 	if (pos.x < 0 || pos.x >= data->width || data->height - 1 - (int)pos.y < 0 || data->height - pos.y >= data->height)
-		color = 0xFFFFFF;
+	{
+		if ((char)(data->mlx->buffer[(int)((data->mlx->screen.y - pix.y - 1) * data->mlx->line_bytes + pix.x * 4)]) == 0x000000)
+			color = 0xFFFFFF;
+		else
+			color = -1;
+	}
 	else if (data->map[data->height - (int)pos.y - 1][(int)pos.x] == '1')
 		color = 0;
 	else
-		color = 0xFFFFFF;
+	{
+		if ((char)(data->mlx->buffer[(int)((data->mlx->screen.y - pix.y - 1) * data->mlx->line_bytes + pix.x * 4)]) == 0x000000)
+			color = 0xFFFFFF;
+		else
+			color = -1;
+	}
 	if (!isLeft(data->pos, pos, v_max) && isLeft(data->pos, pos, v_min))
 	{
-		if (color == 0)
-			color = 0xFF0000;
-		else
+		if (color)
 			color = 0xFF8888;
+		else
+			color = 0x880000;
 	}
 	if (dot(sub_vec(pos, data->pos), sub_vec(pos, data->pos)) < 0.05)
 		color = 0xFF0000;
@@ -85,7 +96,7 @@ void	minimap(t_data *data)
 		while (pix.x < max.x)
 		{
 			color = get_color(data, min, max, pix);
-			if (color != 0xFFFFFF)
+			if (color != -1)
 				my_mlx_pixel_put(data, (int)pix.x, (int)pix.y, color);
 			pix.x += 1;
 		}
