@@ -6,50 +6,16 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:14:22 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/17 15:42:34 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/22 17:45:55 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*
-static void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*temp;
-
-	i = 0;
-	temp = (unsigned char *)b;
-	while (i < len)
-	{
-		temp[i] = (unsigned char)c;
-		i++;
-	}
-	b = (void *)temp;
-	return (b);
-}
-
-static void	*ft_calloc(size_t count, size_t size)
-{
-	size_t	i;
-	void	*ptr;
-
-	i = 0;
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	while (size > 0 && i < count)
-	{
-		ft_memset(ptr + (i * size), 0, size);
-		i++;
-	}
-	return (ptr);
-}
-*/
-
 t_mlx	*init_mlx()
 {
 	t_mlx	*ptr;
+	int		size[2];
 
 	ptr = malloc(sizeof(t_mlx));
 	if (!ptr)
@@ -57,7 +23,8 @@ t_mlx	*init_mlx()
 	ptr->mlx_ptr = mlx_init();
 	if (!ptr->mlx_ptr)
 		return (NULL);
-	ptr->screen = init_vec(1080, 720);
+	mlx_get_screen_size(ptr->mlx_ptr, &(size[0]), &(size[1]));
+	ptr->screen = init_vec(size[0], size[1]);
 	ptr->win = mlx_new_window(ptr->mlx_ptr, ptr->screen.x,
 			ptr->screen.y, "cub3d");
 	ptr->img = mlx_new_image(ptr->mlx_ptr, ptr->screen.x, ptr->screen.y);
