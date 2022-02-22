@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/21 15:26:25 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/22 14:38:33 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -117,7 +117,7 @@ int		check_arg(int arg, char **argv, char **envp);
 int		get_nb_line(t_pars  *pars);
 void	check_map(t_pars *pars);
 void	parsing(t_data *d, char **argv);
-void	check_informations(t_pars *pars);
+void	check_informations(t_pars *pars, t_data *d);
 
 /*----------------parsing_init.c--------------*/
 
@@ -157,7 +157,7 @@ void	check_colors(t_pars *pars, t_data *d, char *color, char what);
 void	collect_textures(t_pars *pars);
 void    check_array_texture(char **texture, t_pars *pars);
 void	check_path_textures(t_pars *pars, t_data *d);
-void    verify_textures(t_pars *pars);
+void    verify_textures(t_pars *pars, t_data *d);
 
 /*----------------parsing_check_map.c-----------------*/
 
