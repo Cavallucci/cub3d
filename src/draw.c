@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 18:10:44 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:09:16 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ static int	get_wall_color(t_data *data, t_vec v, int wall, double height)
 	int		color;
 
 	color = 0;
-	if (wall && v.y > 0)
+	if (wall == 2)
+		color = get_color(1 - (data->pos.x + v.x * data->dist)
+				+ floor(data->pos.x + v.x * data->dist), height, data->door);
+//	else if (wall == 3)
+//		color = get_color(1 - (data->pos.y + v.y * data->dist)
+//				+ floor(data->pos.y + v.y * data->dist), height, data->door);
+	else if (wall && v.y > 0)
 		color = get_color(1 - (data->pos.x + v.x * data->dist)
 				+ floor(data->pos.x + v.x * data->dist), height, data->north);
 	else if (wall && v.y < 0)
