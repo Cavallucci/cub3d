@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 14:33:59 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 18:07:44 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 18:12:33 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,7 @@ double	get_dist_hit(t_data *data, t_vec v, int *wall)
 		else
 			dist = side.x - delta.x;
 		if (data->map[data->height - (int)map.y - 1][(int)map.x] == '1')
-			hit = 1;
-		else if (data->map[data->height - (int)map.y - 1][(int)map.x] == '2')
-		{
-			hit = 1;
-			*wall = 2;
-		}
+			hit = 2;
 	}
 	return (dist);
 }

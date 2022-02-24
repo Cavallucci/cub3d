@@ -6,11 +6,18 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:05:23 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 14:28:43 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 18:13:28 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+/*
+int	check_door(t_data *data)
+{
+	return (0);
+}
+*/
 
 int	hit_up(t_data *data)
 {

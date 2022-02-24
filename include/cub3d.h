@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 17:50:34 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 18:11:17 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_pars
 	char			**east;
 	char			*floor;
 	char			*ceiling;
+	char			**door;
 	struct s_data	*data;
 }	t_pars;
 
@@ -86,6 +87,7 @@ typedef struct s_data
 	t_mlx	*south;
 	t_mlx	*west;
 	t_mlx	*east;
+	t_mlx	*door;
 	int		color_f;
 	int		color_c;
 	char	**map;

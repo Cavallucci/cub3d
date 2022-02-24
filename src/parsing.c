@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/22 16:51:06 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:02:35 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -51,7 +51,7 @@ void    check_informations(t_pars *pars, t_data *d)
 	pars->file[i] = NULL;
     close(pars->file_fd);
     if (i < 9)
-        ft_free_close_error("Error\nFile configuration", pars);
+        ft_free_close_error("Error\nFile configuration", pars);	
     collect_textures(pars);
     verify_textures(pars, d);
 }
@@ -135,7 +135,4 @@ void	parsing(t_data *d, char **argv)
 	init_pars(pars, argv, d);
 	check_informations(pars, d);
 	check_map(pars);
-	//si textures ok, verifir la map
-	//si map ok, mettre la map dans un ** a part
-
 }
