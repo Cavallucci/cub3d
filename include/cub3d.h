@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/22 14:38:33 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/24 16:45:52 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -62,6 +62,7 @@ typedef struct s_pars
 	char			**east;
 	char			*floor;
 	char			*ceiling;
+	char			**door;
 	struct s_data	*data;
 }	t_pars;
 
@@ -86,6 +87,7 @@ typedef struct s_data
 	t_mlx	*south;
 	t_mlx	*west;
 	t_mlx	*east;
+	t_mlx	*door;
 	int		color_f;
 	int		color_c;
 	char	**map;

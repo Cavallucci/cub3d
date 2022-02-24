@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/22 16:52:07 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 18:06:50 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ void	draw(t_data *data)
 		int down = ((int)data->mlx->screen.y / 2) - ((int)data->mlx->screen.y / 2) / dist;
 		int	top = ((int)data->mlx->screen.y / 2) + ((int)data->mlx->screen.y / 2) / dist;
 		int	color;
+//		int door;
+//		door = check_door(data);
 		while (y < (int)data->mlx->screen.y)
 		{
 			if (y < down) 
@@ -149,6 +151,11 @@ void	draw(t_data *data)
 			else if (!wall && v.x > 0)
 			{
 				color = get_color((data->pos.y + v.y * dist) - floor(data->pos.y + v.y * dist), (double)(y - down) / (double)(top - down), data->west);
+				my_mlx_pixel_put(data, x, y, color);
+			}
+			else if (
+			{
+				color = get_color(1 - ((data->pos.x + v.x * dist) - floor(data->pos.x + v.x * dist)), (double)(y - down) / (double)(top - down), data->door);
 				my_mlx_pixel_put(data, x, y, color);
 			}
 			y++;

@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/17 15:29:46 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 16:32:34 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -62,7 +62,7 @@ int	check_char_map(char **map, t_data *d, t_pars *pars)
 		{
 			if (map[i][j] != ' ' && map[i][j] != '0' && map[i][j] != '1'
 				&& map[i][j] != 'N' && map[i][j] != 'S' && map[i][j] != 'E'
-				&& map[i][j] != 'W')
+				&& map[i][j] != 'W' && map[i][j] != 'D')
 				return (ERROR);
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
