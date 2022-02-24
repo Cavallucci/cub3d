@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/02/21 15:13:18 by pguignie         ###   ########.fr        #
+#    Updated: 2022/02/24 17:16:01 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,16 @@ SOURCES =   main.c \
 			parsing_check_textures.c \
 			render.c \
 			draw.c \
+			raycasting.c \
+			raycasting_utils.c \
 			minimap.c \
+			mlx.c \
 			init_mlx.c \
 			key_hook.c \
+			mouse_hook.c \
 			hit.c \
-			vector.c
+			vector.c \
+			vector_op.c
 
 PATH_MLX = mlx_linux
 

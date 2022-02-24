@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/22 14:38:33 by lcavallu         ###   ########.fr       */
+/*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
+/*   Updated: 2022/02/24 17:50:34 by pguignie         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -94,6 +94,10 @@ typedef struct s_data
 	t_vec	plane;
 	int		width;
 	int		height;
+	int		top;
+	int		down;
+	double	dist;
+	int		wall;
 	t_pars	*pars;
 }	t_data;
 
@@ -114,7 +118,7 @@ int		ft_strlen(const char *s);
 /*----------------parsing.c-----------------*/
 
 int		check_arg(int arg, char **argv, char **envp);
-int		get_nb_line(t_pars  *pars);
+int		get_nb_line(t_pars *pars);
 void	check_map(t_pars *pars);
 void	parsing(t_data *d, char **argv);
 void	check_informations(t_pars *pars, t_data *d);
@@ -144,7 +148,6 @@ char	**ft_split(const char *s, char c);
 
 char	**ft_split_parsing(const char *s);
 
-
 /*----------------parsing_check_colors.c---------------*/
 
 int		check_charset_commas(int j, char *color);
@@ -155,9 +158,9 @@ void	check_colors(t_pars *pars, t_data *d, char *color, char what);
 /*----------------parsing_check_textures.c-----------------*/
 
 void	collect_textures(t_pars *pars);
-void    check_array_texture(char **texture, t_pars *pars);
+void	check_array_texture(char **texture, t_pars *pars);
 void	check_path_textures(t_pars *pars, t_data *d);
-void    verify_textures(t_pars *pars, t_data *d);
+void	verify_textures(t_pars *pars, t_data *d);
 
 /*----------------parsing_check_map.c-----------------*/
 
@@ -167,14 +170,19 @@ int		verify_map(t_pars *pars);
 /*----------------render.c--------------------*/
 
 void	render(t_data *data);
+void	re_draw(t_data *data);
 
 /*----------------vector.c---------------------*/
 
 t_vec	init_vec(double x, double y);
+double	size_vec(t_vec v);
+
+/*----------------vector_op.c---------------------*/
+
 t_vec	add_vec(t_vec a, t_vec b);
 t_vec	sub_vec(t_vec a, t_vec b);
 t_vec	mult_dbl(t_vec v, double dbl);
-double	size_vec(t_vec v);
+double	dot(t_vec a, t_vec b);
 
 /*----------------init_mlx.c-----------------------*/
 
@@ -189,15 +197,33 @@ int		key_hook(int keycode, t_data *data);
 
 void	draw(t_data *data);
 
+/*----------------raycasting.c--------------------*/
+
+int		check_hit(t_vec *map, t_vec *side, t_vec delta, t_vec dir);
+double	get_dist_hit(t_data *data, t_vec v, int *wall);
+
+/*----------------raycasting_utils.c--------------------*/
+
+t_vec	get_delta(t_vec dir);
+t_vec	get_side(t_vec pos, t_vec dir, t_vec delta);
+
 /*----------------minimap.c----------------------*/
 
 void	minimap(t_data *data);
 
+/*----------------mlx.c-------------------*/
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
 /*----------------hit.c----------------------*/
 
-int	hit_up(t_data *data);
-int	hit_down(t_data *data);
-int	hit_left(t_data *data);
-int	hit_right(t_data *data);
+int		hit_up(t_data *data);
+int		hit_down(t_data *data);
+int		hit_left(t_data *data);
+int		hit_right(t_data *data);
+
+/*----------------mouse_hook.c-------------------*/
+
+int		mlx_mouse_moving(int x, int y, void *params);
 
 #endif

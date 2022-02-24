@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/17 15:29:46 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:32:44 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -40,11 +40,11 @@ void	init_position(int i, int j, t_data *d, char **map)
 	if (map[i][j] == 'N')
 		d->dir = init_vec(0, 1);
 	if (map[i][j] == 'W')
-		d->dir = init_vec(1, 0);
+		d->dir = init_vec(-1, 0);
 	if (map[i][j] == 'S')
 		d->dir = init_vec(0, -1);
 	if (map[i][j] == 'E')
-		d->dir = init_vec(-1, 0);
+		d->dir = init_vec(1, 0);
 }
 
 int	check_char_map(char **map, t_data *d, t_pars *pars)

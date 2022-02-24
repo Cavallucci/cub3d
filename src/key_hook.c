@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/21 15:35:32 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/24 16:47:46 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,33 @@ int	win_close(t_data *data)
 	return (0);
 }
 
-static void	re_draw(t_data *data)
+void	rotate(double angle, t_vec *v)
 {
-	mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img);
-	data->mlx->img = mlx_new_image(data->mlx->mlx_ptr, data->mlx->screen.x,
-			data->mlx->screen.y);
-	data->mlx->buffer = mlx_get_data_addr(data->mlx->img,
-			&data->mlx->pixel_bits, &data->mlx->line_bytes, &data->mlx->endian);
-	draw(data);
-	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
-		data->mlx->img, 0, 0);
+	t_vec	tmp;
+
+	tmp = *v;
+	v->x = tmp.x * cos(angle) + tmp.y * sin(angle);
+	v->y = tmp.y * cos(angle) - tmp.x * sin(angle);
 }
 
 int	key_hook(int keycode, t_data *data)
 {
 	double	angle;
-	t_vec	tmp;
 
 	if (keycode == 65307 || keycode == 53)
 		win_close(data);
+	if (keycode == 65361 || keycode == 65363)
+	{
+		angle = 3.1415 / 18 * (keycode - 65362);
+		rotate(angle, &data->dir);
+		rotate(angle, &data->plane);
+		re_draw(data);
+	}
 	if (keycode == 106 || keycode == 108)
 	{
 		angle = 3.1415 / 18 * (keycode - 107);
-		tmp = data->dir;
-		data->dir.x = tmp.x * cos(angle) + tmp.y * sin(angle);
-		data->dir.y = tmp.y * cos(angle) - tmp.x * sin(angle);
-		tmp = data->plane;
-		data->plane.x = tmp.x * cos(angle) + tmp.y * sin(angle);
-		data->plane.y = tmp.y * cos(angle) - tmp.x * sin(angle);
+		rotate(angle, &data->dir);
+		rotate(angle, &data->plane);
 		re_draw(data);
 	}
 	if (keycode == W && !hit_up(data))
