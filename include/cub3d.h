@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 18:11:17 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/27 14:24:02 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,7 @@ int		verify_map(t_pars *pars);
 
 /*----------------render.c--------------------*/
 
+void	moove_door(t_data *data);
 void	render(t_data *data);
 void	re_draw(t_data *data);
 
@@ -219,6 +220,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*----------------hit.c----------------------*/
 
+int		hit_door(t_data *data);
 int		hit_up(t_data *data);
 int		hit_down(t_data *data);
 int		hit_left(t_data *data);

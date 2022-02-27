@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 16:47:46 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/27 14:53:55 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	key_hook(int keycode, t_data *data)
 {
 	double	angle;
 
-	if (keycode == 65307 || keycode == 53)
+	if (keycode == ESC || keycode == 53)
 		win_close(data);
 	if (keycode == 65361 || keycode == 65363)
 	{
@@ -56,6 +56,8 @@ int	key_hook(int keycode, t_data *data)
 		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.75));
 	if (keycode == D && !hit_right(data))
 		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.75));
+	if (keycode == 32 && hit_door(data))
+		moove_door(data);
 	if (keycode == 119 || keycode == 115 || keycode == 97 || keycode == 100)
 		re_draw(data);
 	return (0);

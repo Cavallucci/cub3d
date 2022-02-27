@@ -6,11 +6,30 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 16:52:03 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/27 14:54:14 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	moove_door(t_data *data)
+{
+	t_vec   new;
+	double  i;
+
+	i = 0.11;
+	while (i <= 0.51)
+	{
+		new = add_vec(data->pos, mult_dbl(data->dir, i));
+		if (data->map[(int)(data->height - new.y)][(int)(new.x)] == 'D')
+		{
+			data->map[(int)(data->height - new.y)][(int)(new.x)] = '0';
+			re_draw(data);
+			break;
+		}
+		i += 0.1;
+	}
+}
 
 void	re_draw(t_data *data)
 {
@@ -21,18 +40,18 @@ void	re_draw(t_data *data)
 			&data->mlx->pixel_bits, &data->mlx->line_bytes, &data->mlx->endian);
 	draw(data);
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
-		data->mlx->img, 0, 0);
+			data->mlx->img, 0, 0);
 }
 
 void	mlx_handling(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
-		data->mlx->img, 0, 0);
+			data->mlx->img, 0, 0);
 	mlx_hook(data->mlx->win, 6, 1L << 6, mlx_mouse_moving, data);
 	mlx_hook(data->mlx->win, 2, 1L << 0, key_hook, data);
 	mlx_hook(data->mlx->win, 17, 0, win_close, data);
 	mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win,
-		data->mlx->screen.x / 2, data->mlx->screen.y / 2);
+			data->mlx->screen.x / 2, data->mlx->screen.y / 2);
 	mlx_mouse_hide(data->mlx->mlx_ptr, data->mlx->win);
 	mlx_loop(data->mlx->mlx_ptr);
 }
