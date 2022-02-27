@@ -6,23 +6,36 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/27 14:54:14 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/27 16:54:19 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	moove_door(t_data *data)
+long	get_time(void)
+{
+	struct timeval	time;
+	unsigned long	timestamp;
+
+	gettimeofday(&time, NULL);
+	timestamp = time.tv_sec * 1000 + time.tv_usec / 1000;
+	return (timestamp);
+}
+
+void	open_door(t_data *data)
 {
 	t_vec   new;
 	double  i;
 
+	data->wait = get_time();
 	i = 0.11;
 	while (i <= 0.51)
 	{
 		new = add_vec(data->pos, mult_dbl(data->dir, i));
 		if (data->map[(int)(data->height - new.y)][(int)(new.x)] == 'D')
 		{
+			data->pos_door.x = (int)(new.x);
+			data->pos_door.y = (int)(data->height - new.y);
 			data->map[(int)(data->height - new.y)][(int)(new.x)] = '0';
 			re_draw(data);
 			break;

@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/27 14:24:02 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/27 16:57:06 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <string.h>
 # include <stdio.h>
 # include <math.h>
+# include <time.h>
+# include <sys/time.h>
 
 # define ERROR 1
 # define SUCCESS 0
@@ -101,6 +103,8 @@ typedef struct s_data
 	double	dist;
 	int		wall;
 	t_pars	*pars;
+	t_vec	pos_door;
+	long	wait;
 }	t_data;
 
 /*----------------get_next_line.c-----------------*/
@@ -171,7 +175,8 @@ int		verify_map(t_pars *pars);
 
 /*----------------render.c--------------------*/
 
-void	moove_door(t_data *data);
+long	get_time(void);
+void	open_door(t_data *data);
 void	render(t_data *data);
 void	re_draw(t_data *data);
 
