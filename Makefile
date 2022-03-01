@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/02/24 17:16:01 by pguignie         ###   ########.fr        #
+#    Updated: 2022/02/25 18:18:55 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SOURCES =   main.c \
 			mouse_hook.c \
 			hit.c \
 			vector.c \
-			vector_op.c
+			vector_op.c \
+			utils.c
 
 PATH_MLX = mlx_linux
 

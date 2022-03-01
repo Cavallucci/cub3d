@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 16:52:03 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/28 17:39:49 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	mlx_handling(t_data *data)
 	mlx_hook(data->mlx->win, 17, 0, win_close, data);
 	mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win,
 		data->mlx->screen.x / 2, data->mlx->screen.y / 2);
-	mlx_mouse_hide(data->mlx->mlx_ptr, data->mlx->win);
 	mlx_loop(data->mlx->mlx_ptr);
 }
+/*mlx_mouse_hide(data->mlx->mlx_ptr, data->mlx->win);*/
 
 void	render(t_data *data)
 {

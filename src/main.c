@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:49:45 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 16:49:46 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:18:15 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ int	main(int argc, char **argv, char **envp)
 
 	if (check_arg(argc, argv, envp) == SUCCESS)
 	{
-		data = (t_data *)malloc(sizeof(t_data));
+		data = (t_data *)ft_calloc(1, sizeof(t_data));
 		if (!data)
 			return (0);
-		init_data(data);
 		data->mlx = init_mlx();
 		parsing(data, argv);
 		render(data);

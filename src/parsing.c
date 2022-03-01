@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/24 17:02:35 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:53:48 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -82,7 +82,7 @@ void	change_map(t_pars *pars)
 	int		i;
 
 	i = 0;
-	new_map = malloc(sizeof(char *) * pars->nb_line_of_file);
+	new_map = malloc(sizeof(char *) * (pars->nb_line_of_file + 1));
 	while (pars->data->map[i])
 	{
 		new_map[i] = put_file_in_map(pars, new_map, i);
@@ -130,8 +130,9 @@ void	check_map(t_pars *pars)
 
 void	parsing(t_data *d, char **argv)
 {
-	t_pars	pars[1];
+	t_pars	*pars;
 
+	pars = (t_pars *)malloc(sizeof(t_pars));
 	init_pars(pars, argv, d);
 	check_informations(pars, d);
 	check_map(pars);

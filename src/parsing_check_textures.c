@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/02/24 17:37:38 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/28 16:08:21 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -86,7 +86,6 @@ void	verify_textures(t_pars *pars, t_data *d)
 			|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA")
 			|| !cmp_str(pars->door[0], "D"))
 		ft_free_close_error("Error\nFile configuration", pars);
-	d->mlx = init_mlx();
 	check_path_textures(pars, d);
 	check_colors(pars, pars->data, pars->floor, 'F');
 	check_colors(pars, pars->data, pars->ceiling, 'C');

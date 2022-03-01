@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 18:11:17 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/02/25 18:18:33 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,5 +227,9 @@ int		hit_right(t_data *data);
 /*----------------mouse_hook.c-------------------*/
 
 int		mlx_mouse_moving(int x, int y, void *params);
+
+/*----------------utils.c---------------------*/
+
+void    *ft_calloc(size_t count, size_t size);
 
 #endif
