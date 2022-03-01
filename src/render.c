@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/27 16:54:19 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/02/27 17:28:28 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	open_door(t_data *data)
 		{
 			data->pos_door.x = (int)(new.x);
 			data->pos_door.y = (int)(data->height - new.y);
+			
 			data->map[(int)(data->height - new.y)][(int)(new.x)] = '0';
 			re_draw(data);
 			break;
