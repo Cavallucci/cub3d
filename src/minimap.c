@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 13:36:49 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/01 15:26:42 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:56:43 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ static int	get_wall_color(t_data *data, t_vec pos, t_vec pix)
 	}
 	else if (data->map[data->height - (int)pos.y - 1][(int)pos.x] == '1')
 		color = 0;
+	else if (data->map[data->height - (int)pos.y - 1][(int)pos.x] == 'D')
+		color = 0x888888;
 	else
 	{
 		if ((char)(data->mlx->buffer[(int)((data->mlx->screen.y - pix.y - 1)
@@ -63,7 +65,9 @@ static int	get_color(t_data *data, t_vec min, t_vec max, t_vec pix)
 	color = get_wall_color(data, pos, pix);
 	if (!is_left(data->pos, pos, v_max) && is_left(data->pos, pos, v_min))
 	{
-		if (color)
+		if (color == 0x888888)
+			color = 0xCC6666;
+		else if (color)
 			color = 0xFF8888;
 		else
 			color = 0x880000;

@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/25 18:18:33 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:44:04 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <string.h>
 # include <stdio.h>
 # include <math.h>
+# include <time.h>
+# include <sys/time.h>
 
 # define ERROR 1
 # define SUCCESS 0
@@ -101,6 +103,8 @@ typedef struct s_data
 	double	dist;
 	int		wall;
 	t_pars	*pars;
+	t_vec	pos_door;
+	long	wait;
 }	t_data;
 
 /*----------------get_next_line.c-----------------*/
@@ -119,11 +123,11 @@ int		ft_strlen(const char *s);
 
 /*----------------parsing.c-----------------*/
 
-int		check_arg(int arg, char **argv, char **envp);
 int		get_nb_line(t_pars *pars);
-void	check_map(t_pars *pars);
-void	parsing(t_data *d, char **argv);
 void	check_informations(t_pars *pars, t_data *d);
+void	change_map(t_pars *pars);
+void	check_map(t_pars *pars, int i);
+void	parsing(t_data *d, char **argv);
 
 /*----------------parsing_init.c--------------*/
 
@@ -132,15 +136,19 @@ void	init_pars(t_pars *pars, char **argv, t_data *d);
 
 /*----------------parsing_utils.c-----------------*/
 
-int		ft_strncmp_parsing(const char *s1, const char *s2);
-int		ft_error(char *str);
-void	ft_free_close_error(char *str, t_pars *pars);
 int		ft_is_space(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
 int		cmp_str(const char *s1, const char *s2);
-void	free_str(char **str);
 int		ft_atoi(const char *nptr);
 int		ft_isdigit(int c);
+
+/*----------------parsing_utils_bis.c-----------------*/
+
+int		check_charset(char *color, char what);
+int		ft_strncmp_parsing(const char *s1, const char *s2);
+int		ft_error(char *str);
+void	ft_free_close_error(char *str, t_pars *pars);
+void	free_str(char **str);
 
 /*----------------ft_split.c-----------------*/
 
@@ -154,7 +162,8 @@ char	**ft_split_parsing(const char *s);
 
 int		check_charset_commas(int j, char *color);
 int		check_charset_digit(int j, char *color);
-int		check_charset(char *color, char what);
+int		check_color_digit(char *color, int nb_commas, int i);
+int		define_color(char what, int nb, t_data *d, int multi);
 void	check_colors(t_pars *pars, t_data *d, char *color, char what);
 
 /*----------------parsing_check_textures.c-----------------*/
@@ -162,15 +171,28 @@ void	check_colors(t_pars *pars, t_data *d, char *color, char what);
 void	collect_textures(t_pars *pars);
 void	check_array_texture(char **texture, t_pars *pars);
 void	check_path_textures(t_pars *pars, t_data *d);
+int		fill_mlx_ptr(t_data *d);
 void	verify_textures(t_pars *pars, t_data *d);
+
+/*----------------parsing_fill_map.c-----------------*/
+
+char	*put_file_in_map(t_pars *pars, char **new_map, int i);
+void	init_position(int i, int j, t_data *d, char **map);
+int		is_charset_map(char map);
+int		check_char_map(char **map, t_data *d, t_pars *pars);
 
 /*----------------parsing_check_map.c-----------------*/
 
 int		check_first_last_line(t_pars *pars, char **map);
+int		around_map(char **map, int i, int j);
+int		sides_map(char **map, int i, int j);
+int		check_spaces_map(char **map);
 int		verify_map(t_pars *pars);
 
 /*----------------render.c--------------------*/
 
+long	get_time(void);
+void	open_door(t_data *data);
 void	render(t_data *data);
 void	re_draw(t_data *data);
 
@@ -219,6 +241,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*----------------hit.c----------------------*/
 
+int		hit_door(t_data *data);
 int		hit_up(t_data *data);
 int		hit_down(t_data *data);
 int		hit_left(t_data *data);

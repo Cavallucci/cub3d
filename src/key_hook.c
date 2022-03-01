@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/28 17:49:51 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/01 15:50:22 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,16 @@ void	rotate(double angle, t_vec *v)
 int	key_hook(int keycode, t_data *data)
 {
 	double	angle;
+	long	time;
 	int		i;
 
 	i = 0;
-	if (keycode == 65307 || keycode == 53)
+	time = get_time();
+	if (time - data->wait > 5000)
+		data->map[(int)data->pos_door.y][(int)data->pos_door.x] = 'D';
+	if (keycode == 32 && hit_door(data))
+		open_door(data);
+	if (keycode == ESC || keycode == 53)
 		win_close(data);
 	while (i < 5)
 	{
