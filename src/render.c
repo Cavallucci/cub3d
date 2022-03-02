@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/01 15:58:41 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 15:35:42 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	open_door(t_data *data)
 {
 	t_vec   new;
 	double  i;
+	t_door	*cell;
 
 	data->wait = get_time();
 	i = 0.11;
@@ -34,9 +35,8 @@ void	open_door(t_data *data)
 		new = add_vec(data->pos, mult_dbl(data->dir, i));
 		if (data->map[(int)(data->height - new.y)][(int)(new.x)] == 'D')
 		{
-			data->pos_door.x = (int)(new.x);
-			data->pos_door.y = (int)(data->height - new.y);
-			
+			cell = new_cell(new.x, (data->height - new.y));
+			add_cell(&data->list_door, cell);
 			data->map[(int)(data->height - new.y)][(int)(new.x)] = '0';
 			re_draw(data);
 			break;

@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/03/01 15:44:55 by pguignie         ###   ########.fr        #
+#    Updated: 2022/03/02 14:47:13 by lcavallu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJ_PATH    = obj
 
 SOURCES =   mlx.c \
 			hit.c \
+			lst.c \
 			main.c \
 			draw.c \
 			utils.c \
