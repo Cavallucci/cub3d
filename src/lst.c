@@ -6,11 +6,21 @@
 /*   By: mkralik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:40:36 by mkralik           #+#    #+#             */
-/*   Updated: 2022/03/02 15:36:17 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:14:07 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+t_door	*delete_lst(t_door *lst)
+{
+	t_door	*tmp;
+
+	tmp = lst;
+	lst = lst->next;
+	free(tmp);
+	return (lst);
+}
 
 t_door	*ft_lstlast(t_door *lst)
 {
@@ -21,7 +31,7 @@ t_door	*ft_lstlast(t_door *lst)
 	return (lst);
 }
 
-t_door	*new_cell(double x,double y)
+t_door	*new_cell(double x,double y, long w)
 {
 	t_door	*cell;
 
@@ -30,6 +40,7 @@ t_door	*new_cell(double x,double y)
 		return (NULL);
 	cell->pos_door.x = (int)x;
 	cell->pos_door.y = (int)y;
+	cell->wait = w;
 	cell->next = NULL;
 	return (cell);
 }
