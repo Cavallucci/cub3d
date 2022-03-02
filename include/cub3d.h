@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/02 15:23:12 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 15:42:17 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct s_vec
 	double	x;
 	double	y;
 }	t_vec;
+
+typedef struct s_door
+{
+	t_vec			pos_door;
+	struct s_door	*next;
+}	t_door;
 
 typedef struct s_pars
 {
@@ -110,7 +116,7 @@ typedef struct s_data
 	double	dist;
 	int		wall;
 	t_pars	*pars;
-	t_vec	pos_door;
+	t_door	*list_door;
 	long	wait;
 	long	last_move;
 }	t_data;
@@ -203,6 +209,11 @@ long	get_time(void);
 void	open_door(t_data *data);
 void	render(t_data *data);
 void	re_draw(t_data *data);
+
+/*----------------render.c--------------------*/
+
+t_door	*new_cell(double x,double y);
+void	add_cell(t_door **door, t_door *new);
 
 /*----------------vector.c---------------------*/
 

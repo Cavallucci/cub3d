@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/02 14:45:47 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 15:41:47 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,11 @@ int	key_hook(int keycode, t_data *data)
 	i = -1;
 	time = get_time();
 	if (time - data->wait > 5000)
-		data->map[(int)data->pos_door.y][(int)data->pos_door.x] = 'D';
+		while (data->list_door)
+		{
+			data->map[(int)data->list_door->pos_door.y][(int)data->list_door->pos_door.x] = 'D';
+			data->list_door = data->list_door->next;
+		}
 	if (keycode == 32 && hit_door(data))
 		open_door(data);
 	if (keycode == ESC || keycode == 53)
