@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/01 15:41:42 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:31:59 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -15,6 +15,7 @@
 void	init_data(t_data *d)
 {
 	d->mlx = NULL;
+	d->last_move = 0;
 }
 
 void	init_pars(t_pars *pars, char **argv, t_data *d)

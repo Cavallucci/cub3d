@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:49:45 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/28 16:18:15 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 15:19:27 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv, char **envp)
 			return (0);
 		data->mlx = init_mlx();
 		parsing(data, argv);
+		get_sprites(data);
 		render(data);
 	}
 	return (0);

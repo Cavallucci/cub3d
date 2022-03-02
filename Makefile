@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/03/01 15:44:55 by pguignie         ###   ########.fr        #
+#    Updated: 2022/03/02 15:23:40 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SOURCES =   mlx.c \
 			vector.c \
 			parsing.c \
 			minimap.c \
+			sprites.c \
 			key_hook.c \
 			init_mlx.c \
 			ft_split.c \

@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 14:04:43 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/28 17:39:12 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:42:58 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	mlx_mouse_moving(int x, int y, void *params)
 	data = (t_data *)params;
 	if ((x - data->mlx->screen.x / 2) * (x - data->mlx->screen.x / 2) > 10000)
 	{
-		angle = (2 * 3.1415 * ((double)x - (data->mlx->screen.x / 2))) / 6480;
+		angle = (2 * 3.1415 * ((double)x - (data->mlx->screen.x / 2))) / 12960;
 		tmp = data->dir;
 		data->dir.x = tmp.x * cos(angle) + tmp.y * sin(angle);
 		data->dir.y = tmp.y * cos(angle) - tmp.x * sin(angle);

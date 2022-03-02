@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/01 15:44:04 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 15:23:12 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,13 @@ typedef struct s_mlx
 	int		img_height;
 }	t_mlx;
 
+typedef struct s_sprite
+{
+	t_mlx			*img;
+	t_vec			pos;
+	struct s_sprite	*next;
+}	t_sprite;
+
 typedef struct s_data
 {
 	t_mlx	*mlx;
@@ -105,6 +112,7 @@ typedef struct s_data
 	t_pars	*pars;
 	t_vec	pos_door;
 	long	wait;
+	long	last_move;
 }	t_data;
 
 /*----------------get_next_line.c-----------------*/
@@ -254,5 +262,9 @@ int		mlx_mouse_moving(int x, int y, void *params);
 /*----------------utils.c---------------------*/
 
 void    *ft_calloc(size_t count, size_t size);
+
+/*----------------sprites.c---------------------*/
+
+void	get_sprites(t_data *data);
 
 #endif
