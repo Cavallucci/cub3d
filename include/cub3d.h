@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/08 17:26:01 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:00:25 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,16 @@
 # define A							97
 # define S							115
 # define D							100
+
+typedef struct s_key
+{
+	int	w;
+	int	a;
+	int	s;
+	int	d;
+	int	left;
+	int	right;
+}	t_key;
 
 typedef struct s_vec
 {
@@ -122,6 +132,7 @@ typedef struct s_data
 	t_pars	*pars;
 	t_door	*list_door;
 	long	last_move;
+	t_key	*key;
 }	t_data;
 
 /*----------------get_next_line.c-----------------*/
@@ -236,6 +247,12 @@ t_vec	normalize(t_vec v);
 
 t_mlx	*init_mlx(void);
 
+/*----------------free.c--------------------*/
+
+void	mlx_free_img(void *mlx_ptr, t_mlx *mlx);
+void	free_sprites(t_sprit *s);
+void	free_data(t_data *data);
+
 /*----------------key_hook.c-----------------------*/
 
 int		win_close(t_data *data);
@@ -273,7 +290,7 @@ int		hit_right(t_data *data);
 
 /*----------------mouse_hook.c-------------------*/
 
-//int		mlx_mouse_moving(int x, int y, void *params);
+int		mlx_mouse_moving(int x, int y, void *params);
 
 /*----------------utils.c---------------------*/
 

@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/04 17:58:52 by paulguign        ###   ########.fr       */
+/*   Updated: 2022/03/08 18:03:46 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,56 @@ void	re_draw(t_data *data)
 			data->mlx->img, 0, 0);
 }
 
+/*
+static int	key_press(int keycode, t_data *data)
+{
+	if (keycode == W)
+		data->key->w = 1;
+	if (keycode == A)
+		data->key->a = 1;
+	if (keycode == S)
+		data->key->s = 1;
+	if (keycode == D)
+		data->key->d = 1;
+	if (keycode == 106)
+		data->key->left = 1;
+	if (keycode == 108)
+		data->key->right = 1;
+	return (0);
+}
+
+static int	key_release(int keycode, t_data *data)
+{
+	if (keycode == W)
+		data->key->w = 0;
+	if (keycode == A)
+		data->key->a = 0;
+	if (keycode == S)
+		data->key->s = 0;
+	if (keycode == D)
+		data->key->d = 0;
+	if (keycode == 106)
+		data->key->left = 0;
+	if (keycode == 108)
+		data->key->right = 0;
+	return (0);
+}
+*/
+
 void	mlx_handling(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
 			data->mlx->img, 0, 0);
-	//mlx_hook(data->mlx->win, 6, 1L << 6, mlx_mouse_moving, data);
+	mlx_hook(data->mlx->win, 6, 1L << 6, mlx_mouse_moving, data);
 	mlx_hook(data->mlx->win, 2, 1L << 0, key_hook, data);
+	//mlx_hook(data->mlx->win, 2, 1L << 0, key_press, data);
+	//mlx_hook(data->mlx->win, 3, 1L << 1, key_release, data);
 	mlx_hook(data->mlx->win, 17, 0, win_close, data);
-	//mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win,
-		//data->mlx->screen.x / 2, data->mlx->screen.y / 2);
-	//mlx_mouse_hide(data->mlx->mlx_ptr, data->mlx->win);
+	mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win,
+		data->mlx->screen.x / 2, data->mlx->screen.y / 2);
 	mlx_loop(data->mlx->mlx_ptr);
 }
+/*mlx_mouse_hide(data->mlx->mlx_ptr, data->mlx->win);*/
 
 void	render(t_data *data)
 {

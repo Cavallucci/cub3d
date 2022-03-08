@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/03/02 15:42:35 by pguignie         ###   ########.fr        #
+#    Updated: 2022/03/08 17:30:06 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SOURCES =   mlx.c \
 			hit.c \
 			lst.c \
 			main.c \
+			free.c \
 			draw.c \
 			utils.c \
 			render.c \

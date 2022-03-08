@@ -6,19 +6,12 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:18:20 by pguignie          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/03/08 16:08:42 by pguignie         ###   ########.fr       */
-=======
-/*   Updated: 2022/03/04 17:54:42 by paulguign        ###   ########.fr       */
->>>>>>> 224c9f41ca9cb57efd5f6aca3b0410084eb32afa
+/*   Updated: 2022/03/08 17:28:34 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-<<<<<<< HEAD
-void	push_back(t_sprit **s, t_sprit *new)
-=======
 void	order_sprite(t_data *data)
 {
 	t_sprit	*s;
@@ -45,7 +38,6 @@ void	order_sprite(t_data *data)
 }
 
 static void	push_back(t_sprit **s, t_sprit *new)
->>>>>>> 224c9f41ca9cb57efd5f6aca3b0410084eb32afa
 {
 	t_sprit	*tmp;
 
@@ -60,29 +52,6 @@ static void	push_back(t_sprit **s, t_sprit *new)
 	}
 }
 
-<<<<<<< HEAD
-t_sprit	*new_sprite(int i, int j)
-{
-	t_sprit	*s;
-
-	s = (t_sprit *)malloc(sizeof(t_sprit));
-	s->pos.x = j + 0.5;
-	s->pos.y = i + 0.5;
-	s->next = NULL;
-	return (s);
-}
-
-/*
-void	switch_sprite(t_sprit **a, t_sprit **b)
-{
-}
-*/
-
-void	get_sprites(t_data *data)
-{
-	int			i;
-	int			j;
-=======
 static t_sprit	*new_sprite(int i, int j, t_data *data)
 {
 	t_sprit	*new;
@@ -100,7 +69,6 @@ void	get_sprites(t_data *data)
 {
 	int		i;
 	int		j;
->>>>>>> 224c9f41ca9cb57efd5f6aca3b0410084eb32afa
 	t_sprit	*s;
 
 	i = 0;
@@ -111,25 +79,12 @@ void	get_sprites(t_data *data)
 		{
 			if (data->map[i][j] == '2')
 			{
-<<<<<<< HEAD
-				s = new_sprite(data->pars->nb_line_of_file - 1 - i, j);
-=======
 				s = new_sprite(i, j, data);
->>>>>>> 224c9f41ca9cb57efd5f6aca3b0410084eb32afa
 				push_back(&data->sprite, s);
 			}
 			j++;
 		}
 		i++;
 	}
-<<<<<<< HEAD
-	s = data->sprite;
-	while (s)
-	{
-		printf("(%lf, %lf)\n", s->pos.x, s->pos.y);
-		s = s->next;
-	}
-=======
 	order_sprite(data);
->>>>>>> 224c9f41ca9cb57efd5f6aca3b0410084eb32afa
 }
