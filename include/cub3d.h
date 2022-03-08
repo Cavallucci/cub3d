@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/08 18:00:25 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:06:17 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_pars
 	char			*floor;
 	char			*ceiling;
 	char			**door;
+	char			**sprite;
 	struct s_data	*data;
 }	t_pars;
 

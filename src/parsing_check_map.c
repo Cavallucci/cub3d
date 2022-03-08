@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/01 14:59:00 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/08 18:06:50 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -38,27 +38,27 @@ int	check_first_last_line(t_pars *pars, char **map)
 int	around_map(char **map, int i, int j)
 {
 	int	tmp;
-	int	error_high;
-	int	error_back;
+	int	error;
 
 	tmp = i;
-	error_high = 0;
-	error_back = 0;
+	error = 0;
 	while (i - 1 > 0 && map[i - 1][j] == ' ')
 		i--;
 	if (i - 1 > 0)
 		i--;
 	if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
-		|| map[i][j] == 'E' || map[i][j] == 'W')
-		error_high++;
+		|| map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'D'
+		|| map[i][j] == '2')
+		error++;
 	while (map[tmp + 1] && map[tmp + 1][j] == ' ')
 		tmp++;
 	if (map[tmp + 1])
 		tmp++;
 	if (map[tmp] && (map[tmp][j] == '0' || map[tmp][j] == 'N'
-		|| map[tmp][j] == 'S' || map[tmp][j] == 'E' || map[tmp][j] == 'W'))
-		error_back++;
-	if (error_high > 0 || error_back > 0)
+		|| map[tmp][j] == 'S' || map[tmp][j] == 'E' || map[tmp][j] == 'W'
+		|| map[tmp][j] == 'D' || map[tmp][j] == '2'))
+		error++;
+	if (error > 0)
 		return (ERROR);
 	return (SUCCESS);
 }
