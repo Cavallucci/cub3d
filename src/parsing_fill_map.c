@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/01 15:01:26 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/02 18:03:00 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -46,7 +46,7 @@ void	init_position(int i, int j, t_data *d, char **map)
 
 int	is_charset_map(char map)
 {
-	if (map != ' ' && map != '0' && map != '1' && map != 'N'
+	if (map != ' ' && map != '0' && map != '1' && map != '2' && map != 'N'
 		&& map != 'S' && map != 'E' && map != 'W' && map != 'D')
 		return (ERROR);
 	if (map == 'N' || map == 'S' || map == 'E' || map == 'W')

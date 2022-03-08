@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/02 17:44:14 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/02 17:56:17 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,11 @@ typedef struct s_mlx
 	int		img_height;
 }	t_mlx;
 
-typedef struct s_sprite
+typedef struct s_sprit
 {
 	t_vec			pos;
-	struct s_sprite	*next;
-}	t_sprite;
+	struct s_sprit	*next;
+}	t_sprit;
 
 typedef struct s_data
 {
@@ -103,7 +103,7 @@ typedef struct s_data
 	t_mlx	*west;
 	t_mlx	*east;
 	t_mlx	*door;
-	t_mlx	*sprite;
+	t_sprit	*sprite;
 	int		color_f;
 	int		color_c;
 	char	**map;
