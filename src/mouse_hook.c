@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 14:04:43 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/04 16:44:37 by paulguign        ###   ########.fr       */
+/*   Updated: 2022/03/08 19:44:10 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,17 @@
 int	mlx_mouse_moving(int x, int y, void *params)
 {
 	t_data	*data;
-	double	angle;
-	t_vec	tmp;
 
+	(void)y;
 	data = (t_data *)params;
-	if ((x - data->mlx->screen.x / 2) * (x - data->mlx->screen.x / 2) > 10000)
+	if ((x - data->mlx->screen.x / 2) * (x - data->mlx->screen.x / 2) > 1)
 	{
-		angle = (2 * 3.1415 * ((double)x - (data->mlx->screen.x / 2))) / 12960;
-		tmp = data->dir;
-		data->dir.x = tmp.x * cos(angle) + tmp.y * sin(angle);
-		data->dir.y = tmp.y * cos(angle) - tmp.x * sin(angle);
-		tmp = data->plane;
-		data->plane.x = tmp.x * cos(angle) + tmp.y * sin(angle);
-		data->plane.y = tmp.y * cos(angle) - tmp.x * sin(angle);
-		mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win,
-			data->mlx->screen.x / 2, data->mlx->screen.y / 2);
-		re_draw(data);
+		if (x - data->mlx->screen.x / 2 > 0)
+			data->key->right = (x - data->mlx->screen.x / 2) / 10;
+		else
+			data->key->left = (data->mlx->screen.x / 2 - x) / 10;
 	}
-	if ((y - data->mlx->screen.y / 2) * (y - data->mlx->screen.y / 2) > 10000)
-	{
-		mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win,
-			data->mlx->screen.x / 2, data->mlx->screen.y / 2);
-		re_draw(data);
-	}
+	mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win,
+		data->mlx->screen.x / 2, data->mlx->screen.y / 2);
 	return (0);
 }
