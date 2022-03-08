@@ -3,6 +3,7 @@ SO ./img/SO.xpm
 WE ./img/WE.xpm
 EA ./img/EA.xpm
 D ./img/D.xpm
+SP ./img/sprite.xpm
 
 F 50 , 0,0
 
