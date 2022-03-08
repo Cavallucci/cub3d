@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/02 17:44:14 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/07 14:34:03 by paulguign        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,13 @@ typedef struct s_mlx
 	int		img_height;
 }	t_mlx;
 
-typedef struct s_sprite
+typedef struct s_sprit
 {
 	t_vec			pos;
-	struct s_sprite	*next;
-}	t_sprite;
+	double			dist;
+	t_mlx			*img;
+	struct s_sprit	*next;
+}	t_sprit;
 
 typedef struct s_data
 {
@@ -103,7 +105,7 @@ typedef struct s_data
 	t_mlx	*west;
 	t_mlx	*east;
 	t_mlx	*door;
-	t_mlx	*sprite;
+	t_sprit	*sprite;
 	int		color_f;
 	int		color_c;
 	char	**map;
@@ -116,6 +118,7 @@ typedef struct s_data
 	int		down;
 	double	dist;
 	int		wall;
+	double	*z_buffer;
 	t_pars	*pars;
 	t_door	*list_door;
 	long	last_move;
@@ -227,6 +230,7 @@ t_vec	add_vec(t_vec a, t_vec b);
 t_vec	sub_vec(t_vec a, t_vec b);
 t_vec	mult_dbl(t_vec v, double dbl);
 double	dot(t_vec a, t_vec b);
+t_vec	normalize(t_vec v);
 
 /*----------------init_mlx.c-----------------------*/
 
@@ -269,7 +273,7 @@ int		hit_right(t_data *data);
 
 /*----------------mouse_hook.c-------------------*/
 
-int		mlx_mouse_moving(int x, int y, void *params);
+//int		mlx_mouse_moving(int x, int y, void *params);
 
 /*----------------utils.c---------------------*/
 
@@ -278,5 +282,6 @@ void    *ft_calloc(size_t count, size_t size);
 /*----------------sprites.c---------------------*/
 
 void	get_sprites(t_data *data);
+void	order_sprite(t_data *data);
 
 #endif
