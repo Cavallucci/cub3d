@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/02 15:41:35 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/04 17:36:10 by paulguign        ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,6 +17,7 @@ void	init_data(t_data *d)
 	d->mlx = NULL;
 	d->last_move = 0;
 	d->list_door = malloc(sizeof(t_door));
+	d->sprite = NULL;
 }
 
 void	init_pars(t_pars *pars, char **argv, t_data *d)
