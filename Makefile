@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/03/08 17:30:06 by pguignie         ###   ########.fr        #
+#    Updated: 2022/03/09 15:12:20 by lcavallu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ OBJ_PATH    = obj
 
 SOURCES =   mlx.c \
 			hit.c \
-			lst.c \
 			main.c \
 			free.c \
 			draw.c \
@@ -34,14 +33,11 @@ SOURCES =   mlx.c \
 			render.c \
 			vector.c \
 			parsing.c \
-			minimap.c \
-			sprites.c \
 			key_hook.c \
 			init_mlx.c \
 			ft_split.c \
 			vector_op.c \
 			raycasting.c \
-			mouse_hook.c \
 			parsing_init.c \
 			get_next_line.c \
 			parsing_utils.c \
@@ -53,6 +49,25 @@ SOURCES =   mlx.c \
 			get_next_line_utils.c \
 			parsing_check_colors.c \
 			parsing_check_textures.c \
+
+BONUS = hit_bonus.c \
+		draw_bonus.c \
+		free_bonus.c \
+		init_mlx_bonus.c \
+		key_hook_bonus.c \
+		main_bonus.c \
+		mlx_bonus.c \
+		parsing_bonus.c \
+		parsing_check_colors_bonus.c \
+		parsing_check_map_bonus.c \
+		parsing_check_textures_bonus.c \
+		parsing_fill_map_bonus.c \
+		parsing_init_bonus.c \
+		render_bonus.c \
+		lst.c \
+		minimap.c \
+		mouse_hook.c \
+		sprites.c
 
 PATH_MLX = mlx_linux
 
@@ -66,6 +81,8 @@ OBJ = $(addprefix $(OBJ_PATH)/,$(SOURCES:.c=.o))
 	YELLOW  = \033[1;33m
 	BLUE    = \033[1;34m
 	WHITE   = \033[1;37m
+
+OBJ_BONUS = $(BONUS:.c=.o)
 
 all: libs
 	@make $(NAME)
@@ -81,6 +98,11 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INCLUDE)/$(NAME).h
 
 libs:
 	@make -sC mlx_linux
+
+bonus:
+	$(OBJ_BONUS)
+	@$(CC) $(FLAGS) -o $@ $^ $(CFLAGS)
+	@echo "$(GREEN)$@$(NOC)"
 
 clean:
 	@echo "$(RED)clean$(NOC)"
