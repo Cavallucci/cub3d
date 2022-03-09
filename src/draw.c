@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/08 18:40:42 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/09 16:11:06 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,36 +95,43 @@ void	draw_sprites(t_data *data)
 	int		x;
 	int		y;
 	t_vec	size;
+	t_vec	start;
+	int		color;
 
 	s = data->sprite;
 	while (s)
 	{
-		angle = dot(data->dir, normalize(sub_vec(s->pos, data->pos)));
-		if (angle >= 0.832050)
+		angle = acos(dot(data->dir, normalize(sub_vec(s->pos, data->pos))));
+		if (angle < 0.85)
 		{
-			angle = acos(angle);
 			if (is_left(init_vec(0, 0), data->dir, sub_vec(s->pos, data->pos)))
 				angle *= -1;
-			x = ((angle + 0.588003) / 1.176006) * data->mlx->screen.x;
-			if (data->z_buffer[x] > s->dist)
+			x = 0.75 * (tan(angle) + 0.6667) * data->mlx->screen.x;
+			//x = ((angle + 0.588003) / 1.176006) * data->mlx->screen.x;
+			size.y = data->sprite_img->img_height / s->dist;
+			size.x = data->sprite_img->img_width / s->dist;
+			x -= (int)size.x;
+			start.x = x;
+			size.x = size.x;
+			if (x < 0)
+				x = 0;
+			while (x < start.x + 2 * size.x && x < (int)data->mlx->screen.x)
 			{
-				size.y = data->north->img_height / s->dist;
-				size.x = data->north->img_width / s->dist;
-				x -= (int)size.x;
-				size.x = x + 2 * size.x;
-				if (x < 0)
-					x = 0;
-				while (x < size.x && x < (int)data->mlx->screen.x)
+				if (data->z_buffer[x] > s->dist)
 				{
-					y = 0;
-					while (y < (int)data->mlx->screen.y)
+					y = data->mlx->screen.y / 2 - (int)size.y;
+					start.y = y;
+					if (y < 0)
+						y = 0;
+					while (y < start.y + 2 * size.y && y < (int)data->mlx->screen.y)
 					{
-						if (y < data->mlx->screen.y / 2 + (int)size.y && y > data->mlx->screen.y / 2 - (int)size.y)
-							my_mlx_pixel_put(data, x, y, 0x0000FF);
+						color = get_color(1 - ((double)x - start.x) / (size.x * 2), ((double)y - start.y) / (size.y * 2), data->sprite_img);
+						if (color != 0x00FF00)
+							my_mlx_pixel_put(data, x, y, color);
 						y++;
 					}
-					x++;
 				}
+				x++;
 			}
 		}
 		s = s->next;

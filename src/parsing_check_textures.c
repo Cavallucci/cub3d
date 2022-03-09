@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/08 17:54:37 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:58:42 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -66,8 +66,9 @@ int	fill_mlx_ptr(t_data *d)
 			&d->west->line_bytes, &d->west->endian);
 	d->east->mlx_ptr = mlx_get_data_addr(d->east->img, &d->east->pixel_bits,
 			&d->east->line_bytes, &d->east->endian);
-	d->sprite_img->mlx_ptr = mlx_get_data_addr(d->sprite_img->img, &d->sprite_img->pixel_bits,
-			&d->sprite_img->line_bytes, &d->sprite_img->endian);
+	d->sprite_img->mlx_ptr = mlx_get_data_addr(d->sprite_img->img,
+			&d->sprite_img->pixel_bits, &d->sprite_img->line_bytes,
+			&d->sprite_img->endian);
 	if (!d->north->mlx_ptr || !d->south->mlx_ptr || !d->west->mlx_ptr
 		|| !d->east->mlx_ptr || !d->door->mlx_ptr || !d->sprite_img->mlx_ptr)
 		return (ERROR);

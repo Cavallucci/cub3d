@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/08 19:44:10 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:47:35 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,6 @@ int		verify_map(t_pars *pars);
 long	get_time(void);
 void	open_door(t_data *data);
 void	render(t_data *data);
-void	re_draw(t_data *data);
 
 /*----------------lst.c--------------------*/
 
@@ -235,6 +234,7 @@ void	add_cell(t_door **door, t_door *new);
 
 t_vec	init_vec(double x, double y);
 double	size_vec(t_vec v);
+void	rotate(double angle, t_vec *v);
 
 /*----------------vector_op.c---------------------*/
 
@@ -257,7 +257,8 @@ void	free_data(t_data *data);
 /*----------------key_hook.c-----------------------*/
 
 int		win_close(t_data *data);
-int		key_hook(int keycode, t_data *data);
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
 
 /*----------------draw.c----------------------*/
 
@@ -301,5 +302,23 @@ void    *ft_calloc(size_t count, size_t size);
 
 void	get_sprites(t_data *data);
 void	order_sprite(t_data *data);
+double	calc_dist(t_data *data, t_vec pos);
+
+/*----------------door.c-------------------*/
+
+void	open_door(t_data *data);
+
+/*----------------mlx_handle.c------------------*/
+
+void	re_draw(t_data *data);
+void	mlx_handling(t_data *data);
+
+/*----------------time.c------------------*/
+
+long	get_time(void);
+
+/*----------------move.c------------------*/
+
+void	move(t_data *data);
 
 #endif

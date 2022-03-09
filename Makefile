@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/03/08 17:30:06 by pguignie         ###   ########.fr        #
+#    Updated: 2022/03/09 15:23:51 by pguignie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ SOURCES =   mlx.c \
 			main.c \
 			free.c \
 			draw.c \
+			door.c \
+			time.c \
+			move.c \
 			utils.c \
 			render.c \
 			vector.c \
@@ -42,6 +45,7 @@ SOURCES =   mlx.c \
 			vector_op.c \
 			raycasting.c \
 			mouse_hook.c \
+			mlx_handle.c \
 			parsing_init.c \
 			get_next_line.c \
 			parsing_utils.c \

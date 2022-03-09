@@ -1,39 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 15:56:35 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:40:59 by pguignie         ###   ########.fr       */
+/*   Created: 2022/03/09 14:38:35 by pguignie          #+#    #+#             */
+/*   Updated: 2022/03/09 14:39:09 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_vec	init_vec(double x, double y)
+long	get_time(void)
 {
-	t_vec	v;
+	struct timeval	time;
+	unsigned long	timestamp;
 
-	v.x = x;
-	v.y = y;
-	return (v);
-}
-
-double	size_vec(t_vec v)
-{
-	double	size;
-
-	size = sqrt(v.x * v.x + v.y * v.y);
-	return (size);
-}
-
-void	rotate(double angle, t_vec *v)
-{
-	t_vec	tmp;
-
-	tmp = *v;
-	v->x = tmp.x * cos(angle) + tmp.y * sin(angle);
-	v->y = tmp.y * cos(angle) - tmp.x * sin(angle);
+	gettimeofday(&time, NULL);
+	timestamp = time.tv_sec * 1000 + time.tv_usec / 1000;
+	return (timestamp);
 }

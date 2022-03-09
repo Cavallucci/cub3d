@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:18:20 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/08 18:05:55 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:25:51 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,12 @@ static void	push_back(t_sprit **s, t_sprit *new)
 	}
 }
 
+double	calc_dist(t_data *data, t_vec pos)
+{
+	return (sqrt((data->pos.x - pos.x) * (data->pos.x - pos.x)
+			+ (data->pos.y - pos.y) * (data->pos.y - pos.y)));
+}
+
 static t_sprit	*new_sprite(int i, int j, t_data *data)
 {
 	t_sprit	*new;
@@ -59,8 +65,7 @@ static t_sprit	*new_sprite(int i, int j, t_data *data)
 	new = (t_sprit *)malloc(sizeof(t_sprit));
 	new->pos.x = j + 0.5;
 	new->pos.y = data->pars->nb_line_of_file - 0.5 - i;
-	new->dist = sqrt((data->pos.x - new->pos.x) * (data->pos.x - new->pos.x)
-			+ (data->pos.y - new->pos.y) * (data->pos.y - new->pos.y));
+	new->dist = calc_dist(data, new->pos);
 	new->next = NULL;
 	return (new);
 }
