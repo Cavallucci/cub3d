@@ -6,7 +6,7 @@
 /*   By: mkralik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:40:36 by mkralik           #+#    #+#             */
-/*   Updated: 2022/03/10 15:30:05 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:13:18 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_door	*ft_lstlast(t_door *lst)
 	return (lst);
 }
 
-t_door	*new_cell(double x,double y, long w)
+t_door	*new_cell(double x, double y, long w)
 {
 	t_door	*cell;
 
@@ -57,4 +57,3 @@ void	add_cell(t_door **door, t_door *new)
 		last->next = new;
 	}
 }
-

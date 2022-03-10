@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/03/10 15:42:46 by pguignie         ###   ########.fr        #
+#    Updated: 2022/03/10 18:02:00 by lcavallu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ OBJ_PATH    = obj
 
 OBJBNS_PATH = objbns
 
-SOURCES =   mlx.c \
+SOURCES =   key.c \
+			mlx.c \
 			hit.c \
 			main.c \
 			free.c \
@@ -88,7 +89,9 @@ BONUS =	utils.c \
 		lst.c \
 		minimap.c \
 		mouse_hook.c \
-		sprites.c
+		sprites.c \
+		draw_sprites.c \
+		get_color.c
 
 PATH_MLX = mlx_linux
 

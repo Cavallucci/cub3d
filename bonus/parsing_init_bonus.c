@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   parsing_init_bonus.c                               :+:      :+:    :+:   */
@@ -6,11 +6,48 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/10 15:34:30 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:28:10 by lcavallu         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "cub3d_bonus.h"
+
+void	collect_textures_bonus(t_pars *pars, int count, int i)
+{
+	if (count == 2)
+		pars->south = ft_split(pars->file[i], ' ');
+	else if (count == 3)
+		pars->west = ft_split(pars->file[i], ' ');
+	else if (count == 4)
+		pars->east = ft_split(pars->file[i], ' ');
+	else if (count == 5)
+		pars->door = ft_split(pars->file[i], ' ');
+	else if (count == 6)
+		pars->sprite = ft_split(pars->file[i], ' ');
+	else if (count == 7)
+		pars->floor = pars->file[i];
+	else if (count == 8)
+		pars->ceiling = pars->file[i];
+}
+
+void	collect_textures(t_pars *pars)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (count++ < 9)
+	{
+		while (pars->file[i] && ft_is_space(pars->file[i]) == SUCCESS)
+			i++;
+		if (count == 1)
+			pars->north = ft_split(pars->file[i], ' ');
+		else
+			collect_textures_bonus(pars, count, i);
+		i++;
+	}
+}
 
 void	init_data(t_data *d)
 {

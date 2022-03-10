@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:59 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/10 15:33:00 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:14:28 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	rotation(t_data *data)
 	else if (data->key->right > 0)
 		angle = data->key->right * 3.1415 / 90;
 	else if (data->key->left == -1)
-		angle = - 3.1415 / 90;
+		angle = -3.1415 / 90;
 	else
 		angle = 3.1415 / 90;
 	rotate(angle, &data->dir);

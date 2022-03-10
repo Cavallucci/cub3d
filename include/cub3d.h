@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:41:47 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:32:16 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,11 @@ int		key_hook(int keycode, t_data *data);
 
 void	draw(t_data *data);
 
+/*----------------key.c----------------------*/
+
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
+
 /*----------------raycasting.c--------------------*/
 
 int		check_hit(t_vec *map, t_vec *side, t_vec delta, t_vec dir);
@@ -273,6 +278,6 @@ int		mlx_mouse_moving(int x, int y, void *params);
 
 /*----------------utils.c---------------------*/
 
-void    *ft_calloc(size_t count, size_t size);
+void	*ft_calloc(size_t count, size_t size);
 
 #endif

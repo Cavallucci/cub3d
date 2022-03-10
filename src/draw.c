@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:18 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:30:42 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:42:50 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,18 @@ static void	draw_ray(t_data *data, int x, int wall, t_vec v)
 	}
 }
 
+void	re_draw(t_data *data)
+{
+	mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img);
+	data->mlx->img = mlx_new_image(data->mlx->mlx_ptr, data->mlx->screen.x,
+			data->mlx->screen.y);
+	data->mlx->buffer = mlx_get_data_addr(data->mlx->img,
+			&data->mlx->pixel_bits, &data->mlx->line_bytes, &data->mlx->endian);
+	draw(data);
+	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
+		data->mlx->img, 0, 0);
+}
+
 void	draw(t_data *data)
 {
 	t_vec	orig;
@@ -85,5 +97,4 @@ void	draw(t_data *data)
 					/ data->mlx->screen.x));
 		x++;
 	}
-//	minimap(data);
 }

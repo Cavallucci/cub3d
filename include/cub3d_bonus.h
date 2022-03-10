@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:47:35 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:31:39 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../mlx_linux/mlx.h"
 # include <stdlib.h>
@@ -227,7 +227,7 @@ void	render(t_data *data);
 /*----------------lst.c--------------------*/
 
 t_door	*delete_lst(t_door *lst);
-t_door	*new_cell(double x,double y, long wait);
+t_door	*new_cell(double x, double y, long wait);
 void	add_cell(t_door **door, t_door *new);
 
 /*----------------vector.c---------------------*/
@@ -263,6 +263,18 @@ int		key_release(int keycode, t_data *data);
 /*----------------draw.c----------------------*/
 
 void	draw(t_data *data);
+int		is_left(t_vec pos, t_vec v, t_vec point);
+int		get_color(double x, double y, t_mlx *side);
+
+/*----------------key.c----------------------*/
+
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
+
+/*----------------draw_sprites.c----------------------*/
+
+int		draw_sprites_angle_y(t_data *data, int x, t_vec size, t_vec start);
+double	draw_sprites_angle(t_data *data, t_sprit *s, double angle);
 
 /*----------------raycasting.c--------------------*/
 
@@ -277,10 +289,16 @@ t_vec	get_side(t_vec pos, t_vec dir, t_vec delta);
 /*----------------minimap.c----------------------*/
 
 void	minimap(t_data *data);
+int		get_color_mini(t_data *data, t_vec min, t_vec max, t_vec pix);
 
 /*----------------mlx.c-------------------*/
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+/*----------------get_color.c-------------------*/
+
+int		get_doors_color(t_data *data, t_vec v, int wall, double height);
+int		get_wall_color(t_data *data, t_vec v, int wall, double height);
 
 /*----------------hit.c----------------------*/
 
@@ -296,7 +314,7 @@ int		mlx_mouse_moving(int x, int y, void *params);
 
 /*----------------utils.c---------------------*/
 
-void    *ft_calloc(size_t count, size_t size);
+void	*ft_calloc(size_t count, size_t size);
 
 /*----------------sprites.c---------------------*/
 

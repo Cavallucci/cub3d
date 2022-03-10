@@ -6,59 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:48:42 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:43:46 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	re_draw(t_data *data)
-{
-	mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img);
-	data->mlx->img = mlx_new_image(data->mlx->mlx_ptr, data->mlx->screen.x,
-			data->mlx->screen.y);
-	data->mlx->buffer = mlx_get_data_addr(data->mlx->img,
-			&data->mlx->pixel_bits, &data->mlx->line_bytes, &data->mlx->endian);
-	draw(data);
-	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
-			data->mlx->img, 0, 0);
-}
-
-static int	key_press(int keycode, t_data *data)
-{
-	if (keycode == W)
-		data->key->w = 1;
-	if (keycode == A)
-		data->key->a = 1;
-	if (keycode == S)
-		data->key->s = 1;
-	if (keycode == D)
-		data->key->d = 1;
-	if (keycode == 106 || keycode == 65361)
-		data->key->left = -1;
-	if (keycode == 108 || keycode == 65363)
-		data->key->right = -1;
-	if (keycode == ESC)
-		win_close(data);
-	return (0);
-}
-
-static int	key_release(int keycode, t_data *data)
-{
-	if (keycode == W)
-		data->key->w = 0;
-	if (keycode == A)
-		data->key->a = 0;
-	if (keycode == S)
-		data->key->s = 0;
-	if (keycode == D)
-		data->key->d = 0;
-	if (keycode == 106 || keycode == 65361)
-		data->key->left = 0;
-	if (keycode == 108 || keycode == 65363)
-		data->key->right = 0;
-	return (0);
-}
 
 static void	rotate(double angle, t_vec *v)
 {
@@ -67,6 +19,18 @@ static void	rotate(double angle, t_vec *v)
 	tmp = *v;
 	v->x = tmp.x * cos(angle) + tmp.y * sin(angle);
 	v->y = tmp.y * cos(angle) - tmp.x * sin(angle);
+}
+
+void	move_data_key(t_data *data)
+{
+	if (data->key->w && !hit_up(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->dir, 0.1));
+	if (data->key->s && !hit_down(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->dir, -0.1));
+	if (data->key->a && !hit_left(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.15));
+	if (data->key->d && !hit_right(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.15));
 }
 
 static int	move(t_data *data)
@@ -80,7 +44,7 @@ static int	move(t_data *data)
 		else if (data->key->right > 0)
 			angle = data->key->right * 3.1415 / 90;
 		else if (data->key->left == -1)
-			angle = - 3.1415 / 90;
+			angle = -3.1415 / 90;
 		else
 			angle = 3.1415 / 90;
 		rotate(angle, &data->dir);
@@ -90,14 +54,7 @@ static int	move(t_data *data)
 		if (data->key->right > 0)
 			data->key->right = 0;
 	}
-	if (data->key->w && !hit_up(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->dir, 0.1));
-	if (data->key->s && !hit_down(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->dir, -0.1));
-	if (data->key->a && !hit_left(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.15));
-	if (data->key->d && !hit_right(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.15));
+	move_data_key(data);
 	re_draw(data);
 	return (0);
 }
@@ -105,8 +62,7 @@ static int	move(t_data *data)
 void	mlx_handling(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
-			data->mlx->img, 0, 0);
-	//mlx_hook(data->mlx->win, 2, 1L << 0, key_hook, data);
+		data->mlx->img, 0, 0);
 	mlx_hook(data->mlx->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->mlx->win, 3, 1L << 1, key_release, data);
 	mlx_hook(data->mlx->win, 17, 0, win_close, data);

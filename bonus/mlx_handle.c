@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:35:53 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/10 15:31:37 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:14:06 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	re_draw(t_data *data)
 			&data->mlx->pixel_bits, &data->mlx->line_bytes, &data->mlx->endian);
 	draw(data);
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
-			data->mlx->img, 0, 0);
+		data->mlx->img, 0, 0);
 }
 
 static void	close_door(t_data *data)
@@ -34,11 +34,11 @@ static void	close_door(t_data *data)
 		if (time - data->list_door->wait > 5000)
 		{
 			data->map[(int)data->list_door->pos_door.y]
-				[(int)data->list_door->pos_door.x] = 'D';
+			[(int)data->list_door->pos_door.x] = 'D';
 			data->list_door = delete_lst(data->list_door);
 		}
 		else
-			break;
+			break ;
 	}
 }
 
@@ -66,7 +66,7 @@ static int	refresh(t_data *data)
 void	mlx_handling(t_data *data)
 {
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win,
-			data->mlx->img, 0, 0);
+		data->mlx->img, 0, 0);
 	mlx_hook(data->mlx->win, 6, 1L << 6, mlx_mouse_moving, data);
 	mlx_hook(data->mlx->win, 2, 1L << 0, key_press, data);
 	mlx_hook(data->mlx->win, 3, 1L << 1, key_release, data);

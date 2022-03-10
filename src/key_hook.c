@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:40:36 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 16:31:43 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,26 @@ static void	rotate(double angle, t_vec *v)
 	v->y = tmp.y * cos(angle) - tmp.x * sin(angle);
 }
 
+static void	move_key(int keycode, t_data *data)
+{
+	if (keycode == W && !hit_up(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->dir, 0.15));
+	if (keycode == S && !hit_down(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->dir, -0.15));
+	if (keycode == A && !hit_left(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.225));
+	if (keycode == D && !hit_right(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.225));
+	if (keycode == 13 && !hit_up(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->dir, 0.15));
+	if (keycode == 1 && !hit_down(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->dir, -0.15));
+	if (keycode == 0 && !hit_left(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.225));
+	if (keycode == 2 && !hit_right(data))
+		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.225));
+}
+
 static void	move(int keycode, t_data *data)
 {
 	double	angle;
@@ -58,22 +78,7 @@ static void	move(int keycode, t_data *data)
 		rotate(angle, &data->dir);
 		rotate(angle, &data->plane);
 	}
-	if (keycode == W && !hit_up(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->dir, 0.15));
-	if (keycode == S && !hit_down(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->dir, -0.15));
-	if (keycode == A && !hit_left(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.225));
-	if (keycode == D && !hit_right(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.225));
-	if (keycode == 13 && !hit_up(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->dir, 0.15));
-	if (keycode == 1 && !hit_down(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->dir, -0.15));
-	if (keycode == 0 && !hit_left(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->plane, -0.225));
-	if (keycode == 2 && !hit_right(data))
-		data->pos = add_vec(data->pos, mult_dbl(data->plane, 0.225));
+	move_key(keycode, data);
 	re_draw(data);
 }
 

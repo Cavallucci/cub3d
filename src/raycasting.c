@@ -6,11 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 14:33:59 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/27 13:41:26 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 18:26:56 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	check_hit(t_vec *map, t_vec *side, t_vec delta, t_vec dir)
 {
@@ -37,6 +37,15 @@ int	check_hit(t_vec *map, t_vec *side, t_vec delta, t_vec dir)
 	return (wall);
 }
 
+double	get_dist(int *wall, t_vec side, t_vec delta, double dist)
+{
+	if (*wall)
+		dist = side.y - delta.y;
+	else
+		dist = side.x - delta.x;
+	return (dist);
+}
+
 double	get_dist_hit(t_data *data, t_vec v, int *wall)
 {
 	t_vec	map;
@@ -52,10 +61,7 @@ double	get_dist_hit(t_data *data, t_vec v, int *wall)
 	while (!hit)
 	{
 		*wall = check_hit(&map, &side, delta, v);
-		if (*wall)
-			dist = side.y - delta.y;
-		else
-			dist = side.x - delta.x;
+		dist = get_dist(wall, side, delta, dist);
 		if (data->map[data->height - (int)map.y - 1][(int)map.x] == '1')
 			hit = 1;
 		else if (data->map[data->height - (int)map.y - 1][(int)map.x] == 'D')
