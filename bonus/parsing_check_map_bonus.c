@@ -1,16 +1,16 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_check_map.c                                :+:      :+:    :+:   */
+/*   parsing_check_map_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/09 14:05:09 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:33:47 by pguignie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	check_first_last_line(t_pars *pars, char **map)
 {
@@ -47,14 +47,16 @@ int	around_map(char **map, int i, int j)
 	if (i - 1 > 0)
 		i--;
 	if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S'
-		|| map[i][j] == 'E' || map[i][j] == 'W')
+		|| map[i][j] == 'E' || map[i][j] == 'W' || map[i][j] == 'D'
+		|| map[i][j] == '2')
 		error++;
 	while (map[tmp + 1] && map[tmp + 1][j] == ' ')
 		tmp++;
 	if (map[tmp + 1])
 		tmp++;
 	if (map[tmp] && (map[tmp][j] == '0' || map[tmp][j] == 'N'
-		|| map[tmp][j] == 'S' || map[tmp][j] == 'E' || map[tmp][j] == 'W'))
+		|| map[tmp][j] == 'S' || map[tmp][j] == 'E' || map[tmp][j] == 'W'
+		|| map[tmp][j] == 'D' || map[tmp][j] == '2'))
 		error++;
 	if (error > 0)
 		return (ERROR);

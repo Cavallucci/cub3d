@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bis.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/09 14:06:51 by lcavallu         ###   ########.fr       */
+/*   Created: 2022/03/10 15:35:40 by pguignie          #+#    #+#             */
+/*   Updated: 2022/03/10 15:35:47 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	check_charset(char *color, char what)
 {

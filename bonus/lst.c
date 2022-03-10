@@ -6,11 +6,11 @@
 /*   By: mkralik <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 15:40:36 by mkralik           #+#    #+#             */
-/*   Updated: 2022/03/02 17:14:07 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:30:05 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 t_door	*delete_lst(t_door *lst)
 {

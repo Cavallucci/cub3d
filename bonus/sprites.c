@@ -6,11 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 15:18:20 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:25:51 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:36:33 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	order_sprite(t_data *data)
 {

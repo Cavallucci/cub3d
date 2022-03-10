@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:49:45 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:33:17 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:30:38 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	check_arg(int argc, char **argv, char **envp)
 {
@@ -53,6 +53,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!init_keys(data))
 			return (1);
 		parsing(data, argv);
+		get_sprites(data);
 		render(data);
 	}
 	return (0);

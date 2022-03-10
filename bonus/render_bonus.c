@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 15:56:35 by pguignie          #+#    #+#             */
-/*   Updated: 2022/02/24 17:13:45 by pguignie         ###   ########.fr       */
+/*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
+/*   Updated: 2022/03/10 15:36:19 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
-t_vec	init_vec(double x, double y)
+void	render(t_data *data)
 {
-	t_vec	v;
-
-	v.x = x;
-	v.y = y;
-	return (v);
-}
-
-double	size_vec(t_vec v)
-{
-	double	size;
-
-	size = sqrt(v.x * v.x + v.y * v.y);
-	return (size);
+	data->width = data->pars->nb_bigger_line;
+	data->height = data->pars->nb_line_of_file;
+	data->z_buffer = (double *)malloc(sizeof(double) * data->mlx->screen.x);
+	data->top = (int)data->mlx->screen.y / 2;
+	data->down = (int)data->mlx->screen.y / 2;
+	data->plane = init_vec(2 * data->dir.y / 3, -2 * data->dir.x / 3);
+	draw(data);
+	mlx_handling(data);
 }

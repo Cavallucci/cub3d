@@ -6,11 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:38:35 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:39:09 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:36:45 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 long	get_time(void)
 {

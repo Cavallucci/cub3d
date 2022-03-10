@@ -1,16 +1,16 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_fill_map.c                                 :+:      :+:    :+:   */
+/*   parsing_fill_map_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/09 14:05:56 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:34:20 by pguignie         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 char	*put_file_in_map(t_pars *pars, char **new_map, int i)
 {
@@ -46,8 +46,8 @@ void	init_position(int i, int j, t_data *d, char **map)
 
 int	is_charset_map(char map)
 {
-	if (map != ' ' && map != '0' && map != '1' && map != 'N'
-		&& map != 'S' && map != 'E' && map != 'W')
+	if (map != ' ' && map != '0' && map != '1' && map != '2' && map != 'N'
+		&& map != 'S' && map != 'E' && map != 'W' && map != 'D')
 		return (ERROR);
 	if (map == 'N' || map == 'S' || map == 'E' || map == 'W')
 		return (2);

@@ -6,11 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:41:59 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:57:50 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:33:00 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static void	rotation(t_data *data)
 {

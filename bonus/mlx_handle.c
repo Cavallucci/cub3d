@@ -6,11 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:35:53 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 15:57:49 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:31:37 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	re_draw(t_data *data)
 {

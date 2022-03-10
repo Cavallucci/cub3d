@@ -6,11 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 14:34:22 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:35:48 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:25:59 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	open_door(t_data *data)
 {

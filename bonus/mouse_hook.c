@@ -6,11 +6,11 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 14:04:43 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/08 19:44:10 by pguignie         ###   ########.fr       */
+/*   Updated: 2022/03/10 15:32:48 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	mlx_mouse_moving(int x, int y, void *params)
 {

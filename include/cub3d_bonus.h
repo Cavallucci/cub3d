@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:41:47 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/09 14:47:35 by pguignie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ typedef struct s_vec
 	double	y;
 }	t_vec;
 
+typedef struct s_door
+{
+	t_vec			pos_door;
+	long			wait;
+	struct s_door	*next;
+}	t_door;
+
 typedef struct s_pars
 {
 	int				file_fd;
@@ -74,6 +81,8 @@ typedef struct s_pars
 	char			**east;
 	char			*floor;
 	char			*ceiling;
+	char			**door;
+	char			**sprite;
 	struct s_data	*data;
 }	t_pars;
 
@@ -105,6 +114,9 @@ typedef struct s_data
 	t_mlx	*south;
 	t_mlx	*west;
 	t_mlx	*east;
+	t_mlx	*door;
+	t_mlx	*sprite_img;
+	t_sprit	*sprite;
 	int		color_f;
 	int		color_c;
 	char	**map;
@@ -119,6 +131,7 @@ typedef struct s_data
 	int		wall;
 	double	*z_buffer;
 	t_pars	*pars;
+	t_door	*list_door;
 	long	last_move;
 	t_key	*key;
 }	t_data;
@@ -208,13 +221,20 @@ int		verify_map(t_pars *pars);
 /*----------------render.c--------------------*/
 
 long	get_time(void);
+void	open_door(t_data *data);
 void	render(t_data *data);
-void	re_draw(t_data *data);
+
+/*----------------lst.c--------------------*/
+
+t_door	*delete_lst(t_door *lst);
+t_door	*new_cell(double x,double y, long wait);
+void	add_cell(t_door **door, t_door *new);
 
 /*----------------vector.c---------------------*/
 
 t_vec	init_vec(double x, double y);
 double	size_vec(t_vec v);
+void	rotate(double angle, t_vec *v);
 
 /*----------------vector_op.c---------------------*/
 
@@ -231,12 +251,14 @@ t_mlx	*init_mlx(void);
 /*----------------free.c--------------------*/
 
 void	mlx_free_img(void *mlx_ptr, t_mlx *mlx);
+void	free_sprites(t_sprit *s);
 void	free_data(t_data *data);
 
 /*----------------key_hook.c-----------------------*/
 
 int		win_close(t_data *data);
-int		key_hook(int keycode, t_data *data);
+int		key_press(int keycode, t_data *data);
+int		key_release(int keycode, t_data *data);
 
 /*----------------draw.c----------------------*/
 
@@ -262,6 +284,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*----------------hit.c----------------------*/
 
+int		hit_door(t_data *data);
 int		hit_up(t_data *data);
 int		hit_down(t_data *data);
 int		hit_left(t_data *data);
@@ -274,5 +297,28 @@ int		mlx_mouse_moving(int x, int y, void *params);
 /*----------------utils.c---------------------*/
 
 void    *ft_calloc(size_t count, size_t size);
+
+/*----------------sprites.c---------------------*/
+
+void	get_sprites(t_data *data);
+void	order_sprite(t_data *data);
+double	calc_dist(t_data *data, t_vec pos);
+
+/*----------------door.c-------------------*/
+
+void	open_door(t_data *data);
+
+/*----------------mlx_handle.c------------------*/
+
+void	re_draw(t_data *data);
+void	mlx_handling(t_data *data);
+
+/*----------------time.c------------------*/
+
+long	get_time(void);
+
+/*----------------move.c------------------*/
+
+void	move(t_data *data);
 
 #endif
