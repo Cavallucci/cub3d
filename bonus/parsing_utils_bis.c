@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils_bis.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/10 15:35:40 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/10 15:35:47 by pguignie         ###   ########.fr       */
+/*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
+/*   Updated: 2022/03/11 18:07:11 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_bonus.h"
+#include "cub3d.h"
 
 int	check_charset(char *color, char what)
 {
@@ -27,6 +27,8 @@ int	check_charset(char *color, char what)
 	while (color[i])
 	{
 		nb_commas = check_color_digit(color, nb_commas, i);
+		if (nb_commas == -1)
+			return (ERROR);
 		i++;
 	}
 	if (nb_commas != 2 && (color[0] == ',' || color[ft_strlen(color)] == ','))
@@ -70,22 +72,11 @@ int	ft_error(char *str)
 
 void	ft_free_close_error(char *str, t_pars *pars)
 {
-	int	i;
+	t_data	*data;
 
-	i = 0;
-	if (pars->file_fd)
-		close(pars->file_fd);
-	if (pars->file)
-		free_str(pars->file);
-	if (pars->north)
-		free_str(pars->north);
-	if (pars->south)
-		free_str(pars->south);
-	if (pars->west)
-		free_str(pars->west);
-	if (pars->east)
-		free_str(pars->east);
-	ft_error(str);
+	data = pars->data;
+	printf("%s\n", str);
+	win_close(data, 1);
 }
 
 void	free_str(char **str)
@@ -99,4 +90,5 @@ void	free_str(char **str)
 		i++;
 	}
 	free(str);
+	str = NULL;
 }

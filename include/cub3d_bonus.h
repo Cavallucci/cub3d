@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/10 18:31:39 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:23:00 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,7 +256,7 @@ void	free_data(t_data *data);
 
 /*----------------key_hook.c-----------------------*/
 
-int		win_close(t_data *data);
+int		win_close(t_data *data, int e);
 int		key_press(int keycode, t_data *data);
 int		key_release(int keycode, t_data *data);
 
