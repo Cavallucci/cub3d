@@ -6,25 +6,32 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:27:14 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/10 16:31:43 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/11 16:16:28 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	win_close(t_data *data)
+int	win_close(t_data *data, int e)
 {
-	mlx_free_img(data->mlx->mlx_ptr, data->north);
-	mlx_free_img(data->mlx->mlx_ptr, data->south);
-	mlx_free_img(data->mlx->mlx_ptr, data->west);
-	mlx_free_img(data->mlx->mlx_ptr, data->east);
-	mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img);
-	mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win);
-	mlx_destroy_display(data->mlx->mlx_ptr);
-	free(data->mlx->mlx_ptr);
-	free(data->mlx);
+	if (data->north)
+		mlx_free_img(data->mlx->mlx_ptr, data->north);
+	if (data->south)
+		mlx_free_img(data->mlx->mlx_ptr, data->south);
+	if (data->west)
+		mlx_free_img(data->mlx->mlx_ptr, data->west);
+	if (data->east)
+		mlx_free_img(data->mlx->mlx_ptr, data->east);
+	if (data->mlx)
+	{
+		mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img);
+		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win);
+		mlx_destroy_display(data->mlx->mlx_ptr);
+		free(data->mlx->mlx_ptr);
+		free(data->mlx);
+	}
 	free_data(data);
-	exit(0);
+	exit(e);
 }
 
 static void	rotate(double angle, t_vec *v)

@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:50:09 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/10 17:23:41 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/11 16:20:28 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	key_press(int keycode, t_data *data)
 	if (keycode == 108 || keycode == 65363)
 		data->key->right = -1;
 	if (keycode == ESC)
-		win_close(data);
+		win_close(data, 0);
 	return (0);
 }
 

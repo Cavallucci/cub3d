@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/09 14:04:49 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/11 18:10:36 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_color_digit(char *color, int nb_commas, int i)
 	if (color[i] == ',')
 	{
 		if (check_charset_commas(i, color) == ERROR)
-			return (ERROR);
+			return (-1);
 		nb_commas++;
 	}
 	if (ft_isdigit(color[i]))

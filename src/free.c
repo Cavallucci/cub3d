@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:29:13 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/09 14:28:09 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/11 16:41:34 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	mlx_free_img(void *mlx_ptr, t_mlx *mlx)
 {
-	mlx_destroy_image(mlx_ptr, mlx->img);
+	if (mlx->img)
+		mlx_destroy_image(mlx_ptr, mlx->img);
 	free(mlx);
 }
 
@@ -36,6 +37,8 @@ void	free_data(t_data *data)
 		free_str(data->map);
 	if (data->z_buffer)
 		free(data->z_buffer);
+	if (data->key)
+		free(data->key);
 	free(data->pars);
 	free(data);
 }
