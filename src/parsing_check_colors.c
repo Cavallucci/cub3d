@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/14 09:56:22 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:12:03 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,6 @@ void	check_colors(t_pars *pars, t_data *d, char *color, char what)
 		multi -= 8;
 	}
 	free_str(esp);
+	if (i != 3)
+		ft_free_close_error("Error\nColors configuration", pars);
 }

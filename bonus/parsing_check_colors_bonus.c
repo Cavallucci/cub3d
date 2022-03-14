@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/14 09:58:30 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:14:18 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	define_color(char what, int nb, t_data *d, int multi)
 	return (ERROR);
 }
 
-void	check_colors(t_pars *pars, t_data *d, char *color, char what)
+void	check_colors(t_data *d, char *color, char what)
 {
 	int		i;
 	char	**esp;
@@ -84,7 +84,7 @@ void	check_colors(t_pars *pars, t_data *d, char *color, char what)
 	multi = 16;
 
 	if (check_charset(color, what) == ERROR)
-		ft_free_close_error("Error\nColors configuration", pars);
+		ft_free_close_error("Error\nColors configuration", d);
 	esp = ft_split_parsing(color);
 	while (esp[i])
 	{
@@ -92,10 +92,12 @@ void	check_colors(t_pars *pars, t_data *d, char *color, char what)
 		if (define_color(what, nb, d, multi) == ERROR)
 		{
 			free_str(esp);
-			ft_free_close_error("Error\nColors configuration", pars);
+			ft_free_close_error("Error\nColors configuration", d);
 		}
 		i++;
 		multi -= 8;
 	}
 	free_str(esp);
+	if (i != 3)
+		ft_free_close_error("Error\nColors configuration", d);
 }

@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:50:05 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/11 18:23:00 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 10:52:20 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,10 +152,10 @@ int		ft_strlen(const char *s);
 
 /*----------------parsing.c-----------------*/
 
-int		get_nb_line(t_pars *pars);
+int		get_nb_line(t_pars *pars, t_data *d);
 void	check_informations(t_pars *pars, t_data *d);
 void	change_map(t_pars *pars);
-void	check_map(t_pars *pars, int i);
+void	check_map(t_pars *pars, int i, t_data *d);
 void	parsing(t_data *d, char **argv);
 
 /*----------------parsing_init.c--------------*/
@@ -176,7 +176,7 @@ int		ft_isdigit(int c);
 int		check_charset(char *color, char what);
 int		ft_strncmp_parsing(const char *s1, const char *s2);
 int		ft_error(char *str);
-void	ft_free_close_error(char *str, t_pars *pars);
+void	ft_free_close_error(char *str, t_data *data);
 void	free_str(char **str);
 
 /*----------------ft_split.c-----------------*/
@@ -193,12 +193,12 @@ int		check_charset_commas(int j, char *color);
 int		check_charset_digit(int j, char *color);
 int		check_color_digit(char *color, int nb_commas, int i);
 int		define_color(char what, int nb, t_data *d, int multi);
-void	check_colors(t_pars *pars, t_data *d, char *color, char what);
+void	check_colors(t_data *d, char *color, char what);
 
 /*----------------parsing_check_textures.c-----------------*/
 
 void	collect_textures(t_pars *pars);
-void	check_array_texture(char **texture, t_pars *pars);
+void	check_array_texture(char **texture, t_data *d);
 void	check_path_textures(t_pars *pars, t_data *d);
 int		fill_mlx_ptr(t_data *d);
 void	verify_textures(t_pars *pars, t_data *d);

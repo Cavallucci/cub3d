@@ -6,13 +6,13 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/10 18:14:57 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 10:49:09 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-int	get_nb_line(t_pars	*pars)
+int	get_nb_line(t_pars	*pars, t_data *d)
 {
 	char	*line;
 	int		file;
@@ -21,10 +21,10 @@ int	get_nb_line(t_pars	*pars)
 	count_line = 0;
 	file = open(pars->file_name, O_RDONLY);
 	if (file < 0)
-		ft_free_close_error("Error\nOpen map", pars);
+		ft_free_close_error("Error\nOpen map", d);
 	line = get_next_line(file, &line);
 	if (!line)
-		ft_free_close_error("Error\nEmpty file", pars);
+		ft_free_close_error("Error\nEmpty file", d);
 	while (line)
 	{
 		free(line);
@@ -41,7 +41,7 @@ void	check_informations(t_pars *pars, t_data *d)
 	int	i;
 
 	i = 0;
-	pars->nb_line_of_file = get_nb_line(pars);
+	pars->nb_line_of_file = get_nb_line(pars, d);
 	pars->file = malloc(sizeof(char *) * (pars->nb_line_of_file + 1));
 	while (i < pars->nb_line_of_file)
 	{
@@ -51,7 +51,7 @@ void	check_informations(t_pars *pars, t_data *d)
 	pars->file[i] = NULL;
 	close(pars->file_fd);
 	if (i < 9)
-		ft_free_close_error("Error\nFile configuration", pars);
+		ft_free_close_error("Error\nFile configuration", d);
 	collect_textures(pars);
 	verify_textures(pars, d);
 }
@@ -73,7 +73,7 @@ void	change_map(t_pars *pars)
 	pars->data->map = new_map;
 }
 
-void	check_map(t_pars *pars, int i)
+void	check_map(t_pars *pars, int i, t_data *d)
 {
 	int	j;
 	int	bigger_line;
@@ -96,7 +96,7 @@ void	check_map(t_pars *pars, int i)
 	if (verify_map(pars) == ERROR)
 	{
 		free(pars->data->map);
-		ft_free_close_error("Error\nMap configuration", pars);
+		ft_free_close_error("Error\nMap configuration", d);
 	}
 }
 
@@ -115,5 +115,5 @@ void	parsing(t_data *d, char **argv)
 	while (i < pars->nb_line_of_file && (ft_is_space(pars->file[i]) == SUCCESS
 			|| pars->file[i][0] == 0))
 		i++;
-	check_map(pars, i);
+	check_map(pars, i, d);
 }

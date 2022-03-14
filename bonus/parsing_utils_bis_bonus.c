@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils_bis.c                                :+:      :+:    :+:   */
+/*   parsing_utils_bis_bonus.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/14 10:20:40 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:01:54 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	check_charset(char *color, char what)
 {
@@ -70,10 +70,10 @@ int	ft_error(char *str)
 	exit(ERROR);
 }
 
-void	ft_free_close_error(char *str, t_pars *pars)
+void	ft_free_close_error(char *str, t_data *data)
 {
 	printf("%s\n", str);
-	win_close(pars->data, 1);
+	win_close(data, 1);
 }
 
 void	free_str(char **str)

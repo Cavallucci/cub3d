@@ -6,7 +6,7 @@
 #    By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#              #
-#    Updated: 2022/03/10 18:02:00 by lcavallu         ###   ########.fr        #
+#    Updated: 2022/03/14 11:01:39 by lcavallu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ BONUS =	utils.c \
 		get_next_line.c \
 		parsing_utils.c \
 		ft_split_parsing.c \
-		parsing_utils_bis.c \
+		parsing_utils_bis_bonus.c \
 		raycasting_utils.c \
 		get_next_line_utils.c \
 		hit_bonus.c \

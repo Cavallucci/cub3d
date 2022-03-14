@@ -6,13 +6,13 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/14 09:09:02 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 10:53:45 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d_bonus.h"
 
-void	check_array_texture(char **texture, t_pars *pars)
+void	check_array_texture(char **texture, t_data *d)
 {
 	int	i;
 
@@ -20,7 +20,7 @@ void	check_array_texture(char **texture, t_pars *pars)
 	while (texture[i])
 		i++;
 	if (i != 2)
-		ft_free_close_error("Error\nTextures configuration", pars);
+		ft_free_close_error("Error\nTextures configuration", d);
 }
 
 int	fill_mlx_ptr(t_data *d)
@@ -67,24 +67,24 @@ void	check_path_textures(t_pars *pars, t_data *d)
 			&d->east->img_width, &d->east->img_height);
 	if (!d->north->img || !d->south->img || !d->west->img
 		|| !d->east->img || !d->door->img || !d->sprite_img->img)
-		ft_free_close_error("Error\nPath textures", pars);
+		ft_free_close_error("Error\nPath textures", d);
 	if (fill_mlx_ptr(d) == ERROR)
-		ft_free_close_error("Error\nPath textures", pars);
+		ft_free_close_error("Error\nPath textures", d);
 }
 
 void	verify_textures(t_pars *pars, t_data *d)
 {
-	check_array_texture(pars->north, pars);
-	check_array_texture(pars->south, pars);
-	check_array_texture(pars->west, pars);
-	check_array_texture(pars->east, pars);
-	check_array_texture(pars->door, pars);
-	check_array_texture(pars->sprite, pars);
+	check_array_texture(pars->north, d);
+	check_array_texture(pars->south, d);
+	check_array_texture(pars->west, d);
+	check_array_texture(pars->east, d);
+	check_array_texture(pars->door, d);
+	check_array_texture(pars->sprite, d);
 	if (!cmp_str(pars->north[0], "NO") || !cmp_str(pars->south[0], "SO")
 		|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA")
 		|| !cmp_str(pars->door[0], "D") || !cmp_str(pars->sprite[0], "SP"))
-		ft_free_close_error("Error\nFile configuration", pars);
+			ft_free_close_error("Error\nFile configuration", d);
 	check_path_textures(pars, d);
-	check_colors(pars, pars->data, pars->floor, 'F');
-	check_colors(pars, pars->data, pars->ceiling, 'C');
+	check_colors(d, pars->floor, 'F');
+	check_colors(d, pars->ceiling, 'C');
 }
