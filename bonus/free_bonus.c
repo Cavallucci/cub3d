@@ -6,7 +6,7 @@
 /*   By: pguignie <pguignie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/08 17:29:13 by pguignie          #+#    #+#             */
-/*   Updated: 2022/03/11 18:40:43 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 10:19:43 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,29 @@ void	free_doors(t_door *door)
 	}
 }
 
+void	free_data_pars(t_pars *pars)
+{
+	if (pars->file_fd)
+		close(pars->file_fd);
+	if (pars->file)
+		free_str(pars->file);
+	if (pars->north)
+		free_str(pars->north);
+	if (pars->south)
+		free_str(pars->south);
+	if (pars->west)
+		free_str(pars->west);
+	if (pars->east)
+		free_str(pars->east);
+	if (pars->door)
+		free_str(pars->door);
+	if (pars->sprite)
+		free_str(pars->sprite);
+}
+
 void	free_data(t_data *data)
 {
-	if (data->pars->file_fd)
-		close(data->pars->file_fd);
-	if (data->pars->file)
-		free_str(data->pars->file);
-	if (data->pars->north)
-		free_str(data->pars->north);
-	if (data->pars->south)
-		free_str(data->pars->south);
-	if (data->pars->west)
-		free_str(data->pars->west);
-	if (data->pars->east)
-		free_str(data->pars->east);
-	if (data->pars->door)
-		free_str(data->pars->door);
-	if (data->pars->sprite)
-		free_str(data->pars->sprite);
+	free_data_pars(data->pars);
 	if (data->map)
 		free_str(data->map);
 	if (data->z_buffer)

@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/11 18:07:11 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 10:20:40 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,8 @@ int	ft_error(char *str)
 
 void	ft_free_close_error(char *str, t_pars *pars)
 {
-	t_data	*data;
-
-	data = pars->data;
 	printf("%s\n", str);
-	win_close(data, 1);
+	win_close(pars->data, 1);
 }
 
 void	free_str(char **str)

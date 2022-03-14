@@ -1,11 +1,11 @@
-NO ./img/NO.xpm
+N ./mg/NO.xpm
 SO ./img/SO.xpm
 WE ./img/WE.xpm
 EA ./img/EA.xpm
-D ./img/D.xpm
+D ./ig/D.xpm
 SP ./img/sprite.xpm
 
-F 50 , 0,0
+F  50  0   ,  0
 
 C 100   ,     150  ,    255  
 

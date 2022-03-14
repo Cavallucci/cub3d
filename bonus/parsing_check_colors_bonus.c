@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/10 18:15:11 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 09:58:30 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,16 @@ int	check_charset_digit(int j, char *color)
 int	check_color_digit(char *color, int nb_commas, int i)
 {
 	if (!ft_isdigit(color[i]) && color[i] != ' ' && color[i] != ',')
-		return (ERROR);
+		return (-1);
 	if (color[i] == ',')
 	{
 		if (check_charset_commas(i, color) == ERROR)
-			return (ERROR);
+			return (-1);
 		nb_commas++;
 	}
 	if (ft_isdigit(color[i]))
 		if (check_charset_digit(i, color) == ERROR)
-			return (ERROR);
+			return (-1);
 	return (nb_commas);
 }
 
@@ -82,6 +82,7 @@ void	check_colors(t_pars *pars, t_data *d, char *color, char what)
 	i = 0;
 	nb = 0;
 	multi = 16;
+
 	if (check_charset(color, what) == ERROR)
 		ft_free_close_error("Error\nColors configuration", pars);
 	esp = ft_split_parsing(color);

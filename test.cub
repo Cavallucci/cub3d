@@ -3,7 +3,7 @@ SO ./img/SO.xpm
 WE ./img/WE.xpm
 EA ./img/EA.xpm
 
-F 50 , 0,0
+F 50,  0,0
 
 C 100   ,255,  255  
 
