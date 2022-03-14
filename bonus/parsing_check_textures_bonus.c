@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/14 10:53:45 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:26:09 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	verify_textures(t_pars *pars, t_data *d)
 	if (!cmp_str(pars->north[0], "NO") || !cmp_str(pars->south[0], "SO")
 		|| !cmp_str(pars->west[0], "WE") || !cmp_str(pars->east[0], "EA")
 		|| !cmp_str(pars->door[0], "D") || !cmp_str(pars->sprite[0], "SP"))
-			ft_free_close_error("Error\nFile configuration", d);
+		ft_free_close_error("Error\nFile configuration", d);
 	check_path_textures(pars, d);
 	check_colors(d, pars->floor, 'F');
 	check_colors(d, pars->ceiling, 'C');

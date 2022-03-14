@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/14 11:14:18 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:25:40 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void	check_colors(t_data *d, char *color, char what)
 	i = 0;
 	nb = 0;
 	multi = 16;
-
 	if (check_charset(color, what) == ERROR)
 		ft_free_close_error("Error\nColors configuration", d);
 	esp = ft_split_parsing(color);

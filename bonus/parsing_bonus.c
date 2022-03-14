@@ -6,7 +6,7 @@
 /*   By: lcavallu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/10 12:06:52 by lcavallu          #+#    #+#             */
-/*   Updated: 2022/03/14 10:49:09 by lcavallu         ###   ########.fr       */
+/*   Updated: 2022/03/14 11:23:55 by lcavallu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,7 @@ void	check_map(t_pars *pars, int i, t_data *d)
 	pars->data->map[j] = NULL;
 	change_map(pars);
 	if (verify_map(pars) == ERROR)
-	{
-		free(pars->data->map);
 		ft_free_close_error("Error\nMap configuration", d);
-	}
 }
 
 void	parsing(t_data *d, char **argv)
